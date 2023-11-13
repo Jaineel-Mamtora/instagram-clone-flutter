@@ -31,6 +31,13 @@ final ThemeData lightTheme = ThemeData(
       height: 1.5,
       color: Colors.black,
     ),
+    displayLarge: TextStyle(
+      fontFamily: 'Billabong',
+      fontWeight: FontWeight.w400,
+      fontSize: 36.0,
+      height: 1.8,
+      color: Colors.black,
+    ),
     headlineLarge: TextStyle(
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w700,
@@ -106,16 +113,9 @@ final ThemeData lightTheme = ThemeData(
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
       alignment: Alignment.center,
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (states) {
-          if (states.contains(MaterialState.hovered)) {
-            return const Color(0xFF737373).withOpacity(0.4);
-          }
-          return const Color(0xFF737373);
-        },
+      backgroundColor: MaterialStateProperty.all<Color>(
+        Colors.transparent,
       ),
-      foregroundColor:
-          MaterialStateProperty.all<Color>(const Color(0xFF737373)),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
