@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:instagram_clone/utils/constants.dart';
+
 final ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,
@@ -18,63 +20,63 @@ final ThemeData lightTheme = ThemeData(
   /// https://m3.material.io/styles/typography/applying-type
   textTheme: const TextTheme(
     bodyLarge: TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: Constants.fontRoboto,
       fontWeight: FontWeight.w400,
       fontSize: 16.0,
       height: 1.5,
       color: Colors.black,
     ),
     bodySmall: TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: Constants.fontRoboto,
       fontWeight: FontWeight.w400,
       fontSize: 14.0,
       height: 1.5,
       color: Colors.black,
     ),
     displayLarge: TextStyle(
-      fontFamily: 'Billabong',
+      fontFamily: Constants.fontBillabong,
       fontWeight: FontWeight.w400,
-      fontSize: 36.0,
-      height: 1.8,
+      fontSize: 32.0,
+      height: 1.6,
       color: Colors.black,
     ),
     headlineLarge: TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: Constants.fontRoboto,
       fontWeight: FontWeight.w700,
       fontSize: 24.0,
       height: 1.3,
       color: Colors.black,
     ),
     headlineSmall: TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: Constants.fontRoboto,
       fontWeight: FontWeight.w600,
       fontSize: 18.0,
       height: 1.2,
       color: Colors.black,
     ),
     labelLarge: TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: Constants.fontRoboto,
       fontWeight: FontWeight.w500,
       fontSize: 14.0,
       height: 1.2,
       color: Colors.black,
     ),
     labelSmall: TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: Constants.fontRoboto,
       fontWeight: FontWeight.w400,
       fontSize: 12.0,
       height: 1.2,
       color: Colors.black,
     ),
     titleLarge: TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: Constants.fontRoboto,
       fontWeight: FontWeight.w600,
       fontSize: 20.0,
       height: 1.4,
       color: Colors.black,
     ),
     titleSmall: TextStyle(
-      fontFamily: 'Roboto',
+      fontFamily: Constants.fontRoboto,
       fontWeight: FontWeight.w500,
       fontSize: 26.0,
       height: 1.3,
@@ -102,7 +104,7 @@ final ThemeData lightTheme = ThemeData(
       ),
       textStyle: MaterialStateProperty.all(
         const TextStyle(
-          fontFamily: 'Roboto',
+          fontFamily: Constants.fontRoboto,
           fontWeight: FontWeight.w500,
           fontSize: 14.0,
           height: 1.2,

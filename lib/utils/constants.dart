@@ -1,4 +1,9 @@
+import 'dart:ui';
+
 class Constants {
+  static const String fontRoboto = 'Roboto';
+  static const String fontBillabong = 'Billabong';
+
   static const String appName = 'Instagram';
   static const String notifications = 'Notifications';
   static const String messages = 'Messages';
@@ -7,6 +12,10 @@ class Constants {
   static const String post = 'Post';
   static const String reels = 'Reels';
   static const String profile = 'Profile';
+
+  static const String usernameHintText =
+      'Username, email address or mobile number';
+  static const String passwordHintText = 'Password';
 
   static const String pathToLikeUnselectedLightThemeSvg =
       'assets/icons/like_unselected_light_theme.svg';
@@ -30,4 +39,34 @@ class Constants {
       'assets/icons/profile_unselected_light_theme.svg';
   static const String pathToProfileSelectedLightThemeSvg =
       'assets/icons/profile_selected_light_theme.svg';
+  static const String pathToInstagramLogoSvg =
+      'assets/icons/instagram_logo.svg';
+  static const String pathToMetaLogoSvg = 'assets/icons/meta_logo.svg';
+}
+
+class MyColors {
+  static const gradientColors = <Color>[
+    Color(0xFFFEDA77),
+    Color(0xFFF58529),
+    Color(0xFFDD2A7B),
+    Color(0xFF8134AF),
+    Color(0xFF515BD4),
+  ];
+
+  static const storiesBorderGradientColors = <Color>[
+    Color(0xFFFEDA77),
+    Color(0xFFF58529),
+    Color(0xFFDD2A7B),
+    Color(0xFF8134AF),
+  ];
+
+  static const loginBackgroundGradientColors = <Color>[
+    Color(0xFFFFFBF2),
+    Color(0xFFFAF1FC),
+    Color(0xFFEEF7FE),
+    Color(0xFFEFFBF3),
+  ];
+
+  static const loginButtonColor = Color(0xFF0064E1);
+  static const metaTextColor = Color(0xFF09244B);
 }
