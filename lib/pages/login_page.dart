@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:instagram_clone/my_theme.dart';
+import 'package:go_router/go_router.dart';
 
+import 'package:instagram_clone/my_theme.dart';
+import 'package:instagram_clone/pages/home_page.dart';
 import 'package:instagram_clone/utils/constants.dart';
 import 'package:instagram_clone/widgets/custom_text_form_field.dart';
 
@@ -70,9 +72,11 @@ class LoginPage extends StatelessWidget {
                         right: media.size.width * (16 / media.size.width),
                       ),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(HomePage.routeName);
+                        },
                         child: Text(
-                          'Log in',
+                          'Log In',
                           style: lightTheme.textTheme.labelLarge?.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -108,6 +112,7 @@ class LoginPage extends StatelessWidget {
                         'Forgotten Password?',
                         style: lightTheme.textTheme.bodyLarge?.copyWith(
                           letterSpacing: 1.1,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -138,6 +143,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     side: BorderSide(
                       color: MyColors.loginButtonColor,
+                      width: 1.5,
                     ),
                   ),
                   child: Text(
@@ -145,6 +151,7 @@ class LoginPage extends StatelessWidget {
                     style: lightTheme.textTheme.bodyLarge?.copyWith(
                       letterSpacing: 1.1,
                       color: MyColors.loginButtonColor,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),

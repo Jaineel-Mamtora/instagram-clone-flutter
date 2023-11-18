@@ -5,7 +5,7 @@ import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
-  static final routeName = '/home';
+  static final routeName = '/';
 
   const HomePage({
     super.key,
@@ -31,10 +31,9 @@ class _HomePageState extends State<HomePage> {
       'device dimensions (width, height): '
       '(${media.size.width}, ${media.size.height})',
     );
-    debugPrint(
-        ((media.size.height * 0.075) - (media.size.height * 0.025)).toString());
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: false,
         title: Text(
           Constants.appName,
