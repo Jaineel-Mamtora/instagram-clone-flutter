@@ -1,7 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
-
 import 'package:instagram_clone/models/message.dart';
 import 'package:instagram_clone/models/profile_details.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'conversation.g.dart';
 
