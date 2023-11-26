@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:instagram_clone/firebase_options.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/pages/home_page.dart';
@@ -10,14 +14,16 @@ import 'package:instagram_clone/pages/login_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  if (Platform.isAndroid) {
+    await FlutterDisplayMode.setHighRefreshRate();
+  }
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (_) {
-      runApp(MyApp());
-    },
+    (_) => runApp(MyApp()),
   );
 }
 

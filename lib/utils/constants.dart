@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 class Constants {
+  /// fonts
   static const String fontRoboto = 'Roboto';
   static const String fontBillabong = 'Billabong';
 
+  /// texts
   static const String appName = 'Instagram';
   static const String notifications = 'Notifications';
   static const String messages = 'Messages';
@@ -12,11 +14,23 @@ class Constants {
   static const String post = 'Post';
   static const String reels = 'Reels';
   static const String profile = 'Profile';
+  static const String loginButtonText = 'Log In';
+  static const String forgotPasswordButtonText = 'Forgotten Password?';
+  static const String createNewAccountButtonText = 'Create new account';
 
   static const String usernameHintText =
       'Username, email address or mobile number';
   static const String passwordHintText = 'Password';
 
+  /// Regular expression to ensure that the password contains
+  /// at least one uppercase letter,
+  /// one digit,
+  /// one special character,
+  /// and is at least 8 characters long.
+  static const passwordRegex =
+      r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
+
+  /// svg image paths
   static const String pathToLikeUnselectedLightThemeSvg =
       'assets/icons/like_unselected_light_theme.svg';
   static const String pathToMessengerLightThemeSvg =
@@ -44,6 +58,7 @@ class Constants {
   static const String pathToMetaLogoSvg = 'assets/icons/meta_logo.svg';
 }
 
+/// Colors
 class MyColors {
   static const gradientColors = <Color>[
     Color(0xFFFEDA77),

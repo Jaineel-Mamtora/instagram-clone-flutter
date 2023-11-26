@@ -23,6 +23,7 @@ dependencies:
   flutter_cache_manager: ^3.3.1
   firebase_core: ^2.23.0
   cloud_firestore: ^4.13.2
+  flutter_displaymode: ^0.6.0
 
 dev_dependencies:
   flutter_test:
