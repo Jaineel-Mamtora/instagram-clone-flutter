@@ -21,6 +21,11 @@ class Constants {
   static const String usernameHintText =
       'Username, email address or mobile number';
   static const String passwordHintText = 'Password';
+  static const String passwordEmptyErrorText = 'Please enter your password.';
+  static const String usernameEmptyErrorText = 'Please enter your username.';
+  static const String passwordRegExpMismatchErrorText =
+      'Password should contain atleast one uppercase letter, one digit, '
+      'one special character and should be at least 8 characters long.';
 
   /// Regular expression to ensure that the password contains
   /// at least one uppercase letter,
