@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:instagram_clone/models/message.dart';
 import 'package:instagram_clone/models/profile_details.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -5,9 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'conversation.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Conversation {
-  final String id;
-
+class Conversation extends Equatable {
   /// [groupId] : for distinguishing between the messages which are part of
   /// two different users
   final String groupId;
@@ -15,7 +14,6 @@ class Conversation {
   final List<Message> messages;
 
   Conversation({
-    required this.id,
     required this.groupId,
     required this.conversationWith,
     required this.messages,
@@ -25,4 +23,7 @@ class Conversation {
       _$ConversationFromJson(json);
 
   Map<String, dynamic> toJson() => _$ConversationToJson(this);
+
+  @override
+  List<Object?> get props => [groupId];
 }

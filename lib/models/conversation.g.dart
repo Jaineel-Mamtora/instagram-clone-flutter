@@ -7,7 +7,6 @@ part of 'conversation.dart';
 // **************************************************************************
 
 Conversation _$ConversationFromJson(Map<String, dynamic> json) => Conversation(
-      id: json['id'] as String,
       groupId: json['groupId'] as String,
       conversationWith: ProfileDetails.fromJson(
           json['conversationWith'] as Map<String, dynamic>),
@@ -18,7 +17,6 @@ Conversation _$ConversationFromJson(Map<String, dynamic> json) => Conversation(
 
 Map<String, dynamic> _$ConversationToJson(Conversation instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'groupId': instance.groupId,
       'conversationWith': instance.conversationWith.toJson(),
       'messages': instance.messages.map((e) => e.toJson()).toList(),

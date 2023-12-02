@@ -27,10 +27,13 @@ class LoginForm extends StatelessWidget {
               horizontal: media.size.width * (16 / media.size.width),
             ),
             child: CustomTextFormField(
-              hintText: Constants.usernameHintText,
-              validator: (username) {
-                if (username?.isEmpty ?? false) {
-                  return Constants.usernameEmptyErrorText;
+              hintText: Constants.emailHintText,
+              validator: (email) {
+                if (email?.isEmpty ?? false) {
+                  return Constants.emailEmptyErrorText;
+                } else if (!RegExp(Constants.emailRegex)
+                    .hasMatch(email ?? '')) {
+                  return Constants.emailRegExpMismatchErrorText;
                 }
                 return null;
               },

@@ -7,13 +7,11 @@ part 'content.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Content {
-  final String id;
   final List<Post>? posts;
   final List<Story>? stories;
   final List<Conversation>? conversations;
 
   Content({
-    required this.id,
     this.posts,
     this.stories,
     this.conversations,

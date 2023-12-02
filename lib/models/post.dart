@@ -1,11 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:instagram_clone/models/profile_details.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'post.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Post {
-  final String id;
+class Post extends Equatable {
   final ProfileDetails postedBy;
   final List<String> imageUrls;
   final String? postContent;
@@ -15,7 +15,6 @@ class Post {
   final List<String>? hashtags;
 
   Post({
-    required this.id,
     required this.postedBy,
     required this.imageUrls,
     this.postContent,
@@ -28,4 +27,7 @@ class Post {
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
 
   Map<String, dynamic> toJson() => _$PostToJson(this);
+
+  @override
+  List<Object?> get props => [postedBy];
 }

@@ -18,11 +18,12 @@ class Constants {
   static const String forgotPasswordButtonText = 'Forgotten Password?';
   static const String createNewAccountButtonText = 'Create new account';
 
-  static const String usernameHintText =
-      'Username, email address or mobile number';
+  static const String emailHintText = 'Email';
   static const String passwordHintText = 'Password';
   static const String passwordEmptyErrorText = 'Please enter your password.';
-  static const String usernameEmptyErrorText = 'Please enter your username.';
+  static const String emailEmptyErrorText = 'Please enter your email.';
+  static const String emailRegExpMismatchErrorText =
+      'Enter a valid email address.';
   static const String passwordRegExpMismatchErrorText =
       'Password should contain atleast one uppercase letter, one digit, '
       'one special character and should be at least 8 characters long.';
@@ -34,6 +35,8 @@ class Constants {
   /// and is at least 8 characters long.
   static const passwordRegex =
       r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
+
+  static const emailRegex = r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$';
 
   /// svg image paths
   static const String pathToLikeUnselectedLightThemeSvg =

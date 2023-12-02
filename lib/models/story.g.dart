@@ -7,7 +7,6 @@ part of 'story.dart';
 // **************************************************************************
 
 Story _$StoryFromJson(Map<String, dynamic> json) => Story(
-      id: json['id'] as String,
       postedBy:
           ProfileDetails.fromJson(json['postedBy'] as Map<String, dynamic>),
       imageUrls:
@@ -16,7 +15,6 @@ Story _$StoryFromJson(Map<String, dynamic> json) => Story(
     );
 
 Map<String, dynamic> _$StoryToJson(Story instance) => <String, dynamic>{
-      'id': instance.id,
       'postedBy': instance.postedBy.toJson(),
       'imageUrls': instance.imageUrls,
       'viewCount': instance.viewCount,

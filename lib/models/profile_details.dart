@@ -1,25 +1,18 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'profile_details.g.dart';
 
 @JsonSerializable()
-class ProfileDetails {
-  final String id;
-  final String name;
-  final String userName;
-  final String email;
-  final String password;
+class ProfileDetails extends Equatable {
+  final String? email;
   final String? profilePhotoUrl;
   final String? bio;
   final int followersCount;
   final int followingCount;
 
   ProfileDetails({
-    required this.id,
-    required this.name,
-    required this.userName,
-    required this.email,
-    required this.password,
+    this.email,
     this.profilePhotoUrl,
     this.bio,
     this.followersCount = 0,
@@ -30,4 +23,7 @@ class ProfileDetails {
       _$ProfileDetailsFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileDetailsToJson(this);
+
+  @override
+  List<Object?> get props => [email];
 }
