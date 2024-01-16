@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:instagram_clone/common_widgets/custom_text_form_field.dart';
 import 'package:instagram_clone/features/home/view/home_page.dart';
 import 'package:instagram_clone/my_theme.dart';

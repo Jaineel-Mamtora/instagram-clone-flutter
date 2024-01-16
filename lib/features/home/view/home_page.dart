@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:instagram_clone/features/home/widgets/add_content_tab.dart';
+import 'package:instagram_clone/features/home/widgets/home_tab.dart';
+import 'package:instagram_clone/features/home/widgets/profile_tab.dart';
+import 'package:instagram_clone/features/home/widgets/reels_tab.dart';
+import 'package:instagram_clone/features/home/widgets/search_tab.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
 
@@ -24,6 +28,14 @@ class _HomePageState extends State<HomePage> {
     selectedNavIndex = 0;
   }
 
+  List<Widget> tabs = [
+    HomeTab(),
+    SearchTab(),
+    AddContentTab(),
+    ReelsTab(),
+    ProfileTab(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
@@ -34,6 +46,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        surfaceTintColor: Colors.transparent,
         centerTitle: false,
         title: Text(
           Constants.appName,
@@ -56,164 +69,78 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: media.size.height * 0.15,
-              child: ListView.separated(
-                padding: EdgeInsets.symmetric(
-                  horizontal: media.size.height * 0.016,
-                ),
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (_, index) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: media.size.height * 0.1,
-                        width: media.size.height * 0.1,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: MyColors.storiesBorderGradientColors,
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                          ),
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: lightTheme.colorScheme.secondary
-                                .withOpacity(0.5),
-                            width: 0.5,
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          margin: EdgeInsets.all(media.size.height * 0.002),
-                          child: Container(
-                            margin: EdgeInsets.all(media.size.height * 0.006),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: lightTheme.colorScheme.primary,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: media.size.height * 0.008,
-                      ),
-                      SizedBox(
-                        width: media.size.width * 0.21,
-                        child: Center(
-                          child: Text(
-                            index == 0 ? 'Your Story' : 'Story $index',
-                            style: lightTheme.textTheme.labelSmall?.copyWith(
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            softWrap: true,
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-                separatorBuilder: (_, __) {
-                  return SizedBox(
-                    width: media.size.height * 0.016,
-                  );
-                },
+      body: tabs[selectedNavIndex],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Color(0xFFDADADA),
+              width: 1,
+              style: BorderStyle.solid,
+            ),
+          ),
+        ),
+        child: NavigationBar(
+          height: media.size.height * 0.065,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          shadowColor: Colors.transparent,
+          overlayColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+          surfaceTintColor: Colors.transparent,
+          indicatorColor: Colors.white,
+          selectedIndex: selectedNavIndex,
+          onDestinationSelected: (index) => setState(() {
+            selectedNavIndex = index;
+          }),
+          destinations: [
+            NavigationDestination(
+              icon: SvgPicture.asset(
+                Constants.pathToHomeUnselectedLightThemeSvg,
               ),
+              selectedIcon: SvgPicture.asset(
+                Constants.pathToHomeSelectedLightThemeSvg,
+              ),
+              label: Constants.home,
+              tooltip: Constants.home,
             ),
-            Divider(
-              thickness: 0.1,
-              height: 0.1,
-              color: lightTheme.colorScheme.secondary,
+            NavigationDestination(
+              icon: SvgPicture.asset(
+                Constants.pathToSearchUnselectedLightThemeSvg,
+              ),
+              selectedIcon: SvgPicture.asset(
+                Constants.pathToSearchSelectedLightThemeSvg,
+              ),
+              label: Constants.search,
+              tooltip: Constants.search,
             ),
-            ListView.builder(
-              itemCount: 10,
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 200,
-                  color: (index % 2 != 0)
-                      ? lightTheme.colorScheme.primary
-                      : Colors.white,
-                );
-              },
-            )
+            NavigationDestination(
+              icon: SvgPicture.asset(
+                Constants.pathToAddPostLightThemeSvg,
+              ),
+              label: Constants.post,
+              tooltip: Constants.post,
+            ),
+            NavigationDestination(
+              icon: SvgPicture.asset(
+                Constants.pathToReelsMenuUnselectedLightThemeSvg,
+              ),
+              selectedIcon: SvgPicture.asset(
+                Constants.pathToReelsMenuSelectedLightThemeSvg,
+              ),
+              label: Constants.reels,
+              tooltip: Constants.reels,
+            ),
+            NavigationDestination(
+              icon: SvgPicture.asset(
+                Constants.pathToProfileUnselectedLightThemeSvg,
+              ),
+              selectedIcon: SvgPicture.asset(
+                Constants.pathToProfileSelectedLightThemeSvg,
+              ),
+              label: Constants.profile,
+              tooltip: Constants.profile,
+            ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        elevation: 5,
-        currentIndex: selectedNavIndex,
-        enableFeedback: true,
-        onTap: (index) {
-          setState(() {
-            selectedNavIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Constants.pathToHomeUnselectedLightThemeSvg,
-            ),
-            activeIcon: SvgPicture.asset(
-              Constants.pathToHomeSelectedLightThemeSvg,
-            ),
-            label: Constants.home,
-            tooltip: Constants.home,
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Constants.pathToSearchUnselectedLightThemeSvg,
-            ),
-            activeIcon: SvgPicture.asset(
-              Constants.pathToSearchSelectedLightThemeSvg,
-            ),
-            label: Constants.search,
-            tooltip: Constants.search,
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Constants.pathToAddPostLightThemeSvg,
-            ),
-            label: Constants.post,
-            tooltip: Constants.post,
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Constants.pathToReelsMenuUnselectedLightThemeSvg,
-            ),
-            activeIcon: SvgPicture.asset(
-              Constants.pathToReelsMenuSelectedLightThemeSvg,
-            ),
-            label: Constants.reels,
-            tooltip: Constants.reels,
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Constants.pathToProfileUnselectedLightThemeSvg,
-            ),
-            activeIcon: SvgPicture.asset(
-              Constants.pathToProfileSelectedLightThemeSvg,
-            ),
-            label: Constants.profile,
-            tooltip: Constants.profile,
-          ),
-        ],
       ),
     );
   }

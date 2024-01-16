@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:instagram_clone/features/home/view/home_page.dart';
 import 'package:instagram_clone/features/login/view/login_page.dart';
 import 'package:instagram_clone/firebase_options.dart';
@@ -22,6 +21,18 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      systemNavigationBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: false,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarDividerColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
+  );
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) => runApp(MyApp()),
   );
@@ -31,7 +42,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final _router = GoRouter(
-    initialLocation: LoginPage.routeName,
+    initialLocation: HomePage.routeName,
     routes: [
       GoRoute(
         path: HomePage.routeName,
