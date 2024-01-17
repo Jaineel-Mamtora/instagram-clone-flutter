@@ -1,7 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'package:instagram_clone/models/conversation.dart';
 import 'package:instagram_clone/models/post.dart';
 import 'package:instagram_clone/models/story.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'content.g.dart';
 

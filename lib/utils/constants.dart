@@ -15,6 +15,7 @@ class Constants {
   static const String reels = 'Reels';
   static const String profile = 'Profile';
   static const String loginButtonText = 'Log In';
+  static const String nextButtonText = 'Next';
   static const String forgotPasswordButtonText = 'Forgotten Password?';
   static const String createNewAccountButtonText = 'Create new account';
 
@@ -23,10 +24,15 @@ class Constants {
   static const String passwordEmptyErrorText = 'Please enter your password.';
   static const String emailEmptyErrorText = 'Please enter your email.';
   static const String emailRegExpMismatchErrorText =
-      'Enter a valid email address.';
+      'Please enter a valid email.';
   static const String passwordRegExpMismatchErrorText =
-      'Password should contain atleast one uppercase letter, one digit, '
+      'Password should contain at least one uppercase letter, one digit, '
       'one special character and should be at least 8 characters long.';
+  static const String createPasswordRegExpText =
+      'Create a password with at least one uppercase letter, one digit, '
+      'one special character and at least 8 characters long.';
+  static const String signUpPasswordRegExpMismatchErrorText =
+      'Password must match above mentioned criteria.';
 
   /// Regular expression to ensure that the password contains
   /// at least one uppercase letter,
@@ -64,6 +70,12 @@ class Constants {
   static const String pathToInstagramLogoSvg =
       'assets/icons/instagram_logo.svg';
   static const String pathToMetaLogoSvg = 'assets/icons/meta_logo.svg';
+}
+
+class SharedPreferenceConstants {
+  static const String isLoggedInKey = 'IS_LOGGED_IN';
+  static const String userEmailKey = 'USER_EMAIL';
+  static const String userPasswordKey = 'USER_PASSWORD';
 }
 
 /// Colors

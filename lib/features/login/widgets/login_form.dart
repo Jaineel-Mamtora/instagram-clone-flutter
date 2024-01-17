@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
+
+import 'package:instagram_clone/common_widgets/custom_button.dart';
 import 'package:instagram_clone/common_widgets/custom_text_form_field.dart';
+import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/features/home/view/home_page.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
@@ -15,15 +19,16 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
     return Form(
       key: formKey,
       autovalidateMode: AutovalidateMode.disabled,
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: media.size.width * (16 / media.size.width),
+            padding: EdgeInsets.only(
+              left: deviceWidth * 0.05,
+              right: deviceWidth * 0.05,
+              bottom: deviceHeight * 0.02,
             ),
             child: CustomTextFormField(
               hintText: Constants.emailHintText,
@@ -38,12 +43,11 @@ class LoginForm extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(
-            height: media.size.height * (16 / media.size.height),
-          ),
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: media.size.width * (16 / media.size.width),
+            padding: EdgeInsets.only(
+              left: deviceWidth * 0.05,
+              right: deviceWidth * 0.05,
+              bottom: deviceHeight * 0.02,
             ),
             child: CustomTextFormField(
               obscure: true,
@@ -63,11 +67,12 @@ class LoginForm extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(
-              top: media.size.height * (16 / media.size.height),
-              left: media.size.width * (16 / media.size.width),
-              right: media.size.width * (16 / media.size.width),
+              left: deviceWidth * 0.04,
+              right: deviceWidth * 0.04,
+              bottom: deviceHeight * 0.02,
             ),
-            child: ElevatedButton(
+            child: CustomButton(
+              title: Constants.loginButtonText,
               onPressed: () {
                 if (formKey.currentState?.validate() ?? false) {
                   formKey.currentState?.reset();
@@ -76,49 +81,28 @@ class LoginForm extends StatelessWidget {
                       );
                 }
               },
-              child: Text(
-                Constants.loginButtonText,
-                style: lightTheme.textTheme.labelLarge?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.1,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                visualDensity: VisualDensity.compact,
-                maximumSize: Size(
-                  media.size.width,
-                  media.size.height * (55 / media.size.height),
-                ),
-                minimumSize: Size(
-                  media.size.width,
-                  media.size.height * (55 / media.size.height),
-                ),
-                backgroundColor: MyColors.loginButtonColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    media.size.height * (55 / media.size.height),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: media.size.height * (16 / media.size.height),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Text(
-              Constants.forgotPasswordButtonText,
-              style: lightTheme.textTheme.bodyLarge?.copyWith(
+              textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
                 letterSpacing: 1.1,
-                fontWeight: FontWeight.w500,
               ),
+              backgroundColor: MyColors.loginButtonColor,
             ),
           ),
-          SizedBox(
-            height: media.size.height * (16 / media.size.height),
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: deviceHeight * 0.02,
+            ),
+            child: InkWell(
+              onTap: () {},
+              child: Text(
+                Constants.forgotPasswordButtonText,
+                style: lightTheme.textTheme.bodyMedium?.copyWith(
+                  letterSpacing: 1.1,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
           ),
         ],
       ),

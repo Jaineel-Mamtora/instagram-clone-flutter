@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/svg.dart';
 
+import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/utils/constants.dart';
 
 class MetaLogoFooter extends StatelessWidget {
@@ -10,17 +12,16 @@ class MetaLogoFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: media.size.height * (16 / media.size.height),
+        vertical: deviceHeight * 0.02,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(
             Constants.pathToMetaLogoSvg,
-            height: media.size.height * (12 / media.size.height),
+            height: deviceHeight * 0.015,
           ),
         ],
       ),

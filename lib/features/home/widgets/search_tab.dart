@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:instagram_clone/my_theme.dart';
 
 class SearchTab extends StatelessWidget {

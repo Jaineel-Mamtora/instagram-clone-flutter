@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/features/login/widgets/create_account_button.dart';
 import 'package:instagram_clone/features/login/widgets/login_form.dart';
 import 'package:instagram_clone/features/login/widgets/logo_header.dart';
@@ -25,14 +27,13 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
-    print('${media.size.height}, ${media.size.width}');
+    print('$deviceHeight, $deviceWidth');
     return Scaffold(
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: SafeArea(
           child: Container(
-            height: media.size.height - media.padding.top,
+            height: deviceHeight - deviceTopPadding,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: MyColors.loginBackgroundGradientColors,
@@ -46,11 +47,11 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: media.size.height * (75 / media.size.height),
+                  height: deviceHeight * (75 / deviceHeight),
                 ),
                 InstagramLogoHeader(),
                 SizedBox(
-                  height: media.size.height * (75 / media.size.height),
+                  height: deviceHeight * (75 / deviceHeight),
                 ),
                 LoginForm(formKey: formKey),
                 Spacer(),

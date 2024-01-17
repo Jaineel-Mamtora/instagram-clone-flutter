@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:instagram_clone/my_theme.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -7,9 +8,12 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Profile Tab',
-        style: lightTheme.textTheme.bodyLarge,
+      child: TextButton(
+        onPressed: () {},
+        child: Text(
+          'Logout',
+          style: lightTheme.textTheme.bodyLarge,
+        ),
       ),
     );
   }

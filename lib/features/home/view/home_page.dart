@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/svg.dart';
+
+import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/features/home/widgets/add_content_tab.dart';
 import 'package:instagram_clone/features/home/widgets/home_tab.dart';
 import 'package:instagram_clone/features/home/widgets/profile_tab.dart';
@@ -38,10 +41,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
     debugPrint(
       'device dimensions (width, height): '
-      '(${media.size.width}, ${media.size.height})',
+      '($deviceWidth, $deviceHeight)',
     );
     return Scaffold(
       appBar: AppBar(
@@ -81,7 +83,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         child: NavigationBar(
-          height: media.size.height * 0.065,
+          height: deviceHeight * 0.065,
           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
           shadowColor: Colors.transparent,
           overlayColor: MaterialStatePropertyAll<Color>(Colors.transparent),

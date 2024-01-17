@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
 
@@ -9,7 +11,6 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = MediaQuery.of(context);
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
       child: Column(
@@ -18,10 +19,10 @@ class HomeTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: media.size.height * 0.15,
+            height: deviceHeight * 0.15,
             child: ListView.separated(
               padding: EdgeInsets.symmetric(
-                horizontal: media.size.height * 0.016,
+                horizontal: deviceHeight * 0.016,
               ),
               scrollDirection: Axis.horizontal,
               itemCount: 10,
@@ -31,8 +32,8 @@ class HomeTab extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      height: media.size.height * 0.1,
-                      width: media.size.height * 0.1,
+                      height: deviceHeight * 0.1,
+                      width: deviceHeight * 0.1,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: MyColors.storiesBorderGradientColors,
@@ -51,9 +52,9 @@ class HomeTab extends StatelessWidget {
                           shape: BoxShape.circle,
                           color: Colors.white,
                         ),
-                        margin: EdgeInsets.all(media.size.height * 0.002),
+                        margin: EdgeInsets.all(deviceHeight * 0.002),
                         child: Container(
-                          margin: EdgeInsets.all(media.size.height * 0.006),
+                          margin: EdgeInsets.all(deviceHeight * 0.006),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: lightTheme.colorScheme.primary,
@@ -62,10 +63,10 @@ class HomeTab extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: media.size.height * 0.008,
+                      height: deviceHeight * 0.008,
                     ),
                     SizedBox(
-                      width: media.size.width * 0.21,
+                      width: deviceWidth * 0.21,
                       child: Center(
                         child: Text(
                           index == 0 ? 'Your Story' : 'Story $index',
@@ -81,7 +82,7 @@ class HomeTab extends StatelessWidget {
               },
               separatorBuilder: (_, __) {
                 return SizedBox(
-                  width: media.size.height * 0.016,
+                  width: deviceHeight * 0.016,
                 );
               },
             ),
