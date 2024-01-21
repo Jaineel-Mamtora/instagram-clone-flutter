@@ -92,11 +92,8 @@ class CustomTextFormField extends StatelessWidget {
             deviceHeight * 0.01,
           ),
         ),
-        contentPadding: EdgeInsets.only(
-          left: deviceWidth * (16 / deviceWidth),
-          right: deviceWidth * (16 / deviceWidth),
-          top: deviceHeight * (16 / deviceHeight),
-          bottom: deviceHeight * (18 / deviceHeight),
+        contentPadding: EdgeInsets.all(
+          deviceWidth * 0.045,
         ),
       ),
     );

@@ -18,23 +18,23 @@ final ThemeData lightTheme = ThemeData(
   ),
 
   /// https://m3.material.io/styles/typography/applying-type
-  textTheme: const TextTheme(
+  textTheme: TextTheme(
     bodyLarge: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w500,
       fontSize: 20.0,
       height: 1.5,
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     bodyMedium: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w400,
       fontSize: 16.0,
       height: 1.2,
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     bodySmall: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w400,
       fontSize: 14.0,
       height: 1.5,
@@ -48,42 +48,42 @@ final ThemeData lightTheme = ThemeData(
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     headlineLarge: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w700,
       fontSize: 24.0,
       height: 1.3,
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     headlineSmall: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w600,
       fontSize: 18.0,
       height: 1.2,
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     labelLarge: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w500,
       fontSize: 14.0,
       height: 1.2,
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     labelSmall: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w400,
       fontSize: 12.0,
       height: 1.2,
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     titleLarge: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w600,
       fontSize: 20.0,
       height: 1.4,
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     titleSmall: TextStyle(
-      fontFamily: Constants.fontRoboto,
+      fontFamily: Constants.fontInter,
       fontWeight: FontWeight.w500,
       fontSize: 16.0,
       height: 1.3,
@@ -111,7 +111,7 @@ final ThemeData lightTheme = ThemeData(
       ),
       textStyle: MaterialStateProperty.all(
         const TextStyle(
-          fontFamily: Constants.fontRoboto,
+          fontFamily: Constants.fontInter,
           fontWeight: FontWeight.w500,
           fontSize: 14.0,
           height: 1.2,

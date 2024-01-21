@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class Constants {
   /// fonts
-  static const String fontRoboto = 'Roboto';
+  static const String fontInter = 'Inter';
   static const String fontBillabong = 'Billabong';
 
   /// texts

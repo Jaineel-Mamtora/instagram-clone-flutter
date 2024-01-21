@@ -42,7 +42,7 @@ class CustomButton extends StatelessWidget {
         fixedSize: size ??
             Size(
               deviceWidth,
-              deviceHeight * 0.055,
+              deviceHeight * 0.06,
             ),
         side: BorderSide(
           color: borderColor,
@@ -51,7 +51,7 @@ class CustomButton extends StatelessWidget {
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
-            borderRadius ?? (deviceHeight * (55 / deviceHeight)),
+            borderRadius ?? deviceHeight * 0.06,
           ),
         ),
       ),
