@@ -13,9 +13,13 @@ class LoginForm extends StatelessWidget {
   const LoginForm({
     super.key,
     required this.formKey,
+    required this.emailController,
+    required this.passwordController,
   });
 
   final GlobalKey<FormState> formKey;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,7 @@ class LoginForm extends StatelessWidget {
               bottom: deviceHeight * 0.02,
             ),
             child: CustomTextFormField(
+              controller: emailController,
               hintText: Constants.emailHintText,
               validator: (email) {
                 if (email?.isEmpty ?? false) {
@@ -50,6 +55,7 @@ class LoginForm extends StatelessWidget {
               bottom: deviceHeight * 0.02,
             ),
             child: CustomTextFormField(
+              controller: passwordController,
               obscure: true,
               hintText: Constants.passwordHintText,
               validator: (password) {

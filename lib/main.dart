@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:go_router/go_router.dart';
+import 'package:instagram_clone/core/session_details.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,6 +44,8 @@ Future<void> main() async {
     ),
   );
 
+  isLoggedIn = await SessionDetails().getLoginStatus();
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) => runApp(MyApp()),
   );
@@ -52,7 +55,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final _router = GoRouter(
-    initialLocation: LoginPage.routeName,
+    initialLocation: isLoggedIn ? HomePage.routeName : LoginPage.routeName,
     routes: [
       GoRoute(
         path: HomePage.routeName,

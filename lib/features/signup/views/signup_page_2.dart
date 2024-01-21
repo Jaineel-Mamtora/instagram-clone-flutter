@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:instagram_clone/core/session_details.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -24,12 +25,14 @@ class SignUpPage2 extends StatefulWidget {
 }
 
 class _SignUpPage2State extends State<SignUpPage2> {
-  late GlobalKey<FormState> formKey;
+  late GlobalKey<FormState> _formKey;
+  late TextEditingController _passwordController;
 
   @override
   void initState() {
     super.initState();
-    formKey = GlobalKey<FormState>();
+    _formKey = GlobalKey<FormState>();
+    _passwordController = TextEditingController();
   }
 
   @override
@@ -97,7 +100,7 @@ class _SignUpPage2State extends State<SignUpPage2> {
                   ),
                 ),
                 Form(
-                  key: formKey,
+                  key: _formKey,
                   autovalidateMode: AutovalidateMode.disabled,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -114,6 +117,7 @@ class _SignUpPage2State extends State<SignUpPage2> {
                           selector: (_, signUpProvider) =>
                               signUpProvider.obscure,
                           builder: (_, obscure, __) => CustomTextFormField(
+                            controller: _passwordController,
                             obscure: obscure,
                             suffixIcon: Padding(
                               padding:
@@ -156,12 +160,9 @@ class _SignUpPage2State extends State<SignUpPage2> {
                         ),
                         child: CustomButton(
                           title: Constants.nextButtonText,
-                          onPressed: () {
-                            if (formKey.currentState?.validate() ?? false) {
-                              formKey.currentState?.reset();
-                              context.push(HomePage.routeName).then(
-                                    (_) => formKey.currentState?.reset(),
-                                  );
+                          onPressed: () async {
+                            if (_formKey.currentState?.validate() ?? false) {
+                              await saveCredentialsAndRegisterUser(context);
                             }
                           },
                           textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
@@ -211,5 +212,26 @@ class _SignUpPage2State extends State<SignUpPage2> {
         ),
       ),
     );
+  }
+
+  Future<void> saveCredentialsAndRegisterUser(BuildContext context) async {
+    await SessionDetails().setUserPassword(
+      password: _passwordController.text.trim(),
+    );
+    if ((await SessionDetails().getUserEmail()).isNotEmpty &&
+        (await SessionDetails().getUserPassword()).isNotEmpty) {
+      await SessionDetails()
+          .userSignUp(
+        email: await SessionDetails().getUserEmail(),
+        password: await SessionDetails().getUserPassword(),
+      )
+          .then((value) async {
+        SessionDetails().setLoginStatus(status: true);
+        _formKey.currentState?.reset();
+        await context.push(HomePage.routeName).then(
+              (_) => _formKey.currentState?.reset(),
+            );
+      });
+    }
   }
 }

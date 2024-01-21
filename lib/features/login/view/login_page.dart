@@ -18,11 +18,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late GlobalKey<FormState> formKey;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
 
   @override
   void initState() {
     super.initState();
     formKey = GlobalKey<FormState>();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
   }
 
   @override
@@ -53,7 +57,11 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: deviceHeight * (75 / deviceHeight),
                 ),
-                LoginForm(formKey: formKey),
+                LoginForm(
+                  formKey: formKey,
+                  emailController: _emailController,
+                  passwordController: _passwordController,
+                ),
                 Spacer(),
                 CreateAccountButton(),
                 MetaLogoFooter(),

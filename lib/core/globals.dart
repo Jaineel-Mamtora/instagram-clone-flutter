@@ -5,3 +5,4 @@ late double deviceWidth;
 late double deviceHeight;
 late double deviceTopPadding;
 late double deviceBottomPadding;
+bool isLoggedIn = false;

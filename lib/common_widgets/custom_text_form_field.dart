@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
     required this.hintText,
+    required this.controller,
     required this.validator,
     this.obscure = false,
     this.textInputType = TextInputType.text,
@@ -18,10 +19,12 @@ class CustomTextFormField extends StatelessWidget {
   final bool obscure;
   final TextInputType textInputType;
   final Widget? suffixIcon;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       textAlignVertical: TextAlignVertical.center,
       obscureText: obscure,
       style: lightTheme.textTheme.bodyMedium?.copyWith(

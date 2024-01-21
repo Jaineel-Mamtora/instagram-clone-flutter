@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:instagram_clone/common_widgets/custom_button.dart';
 import 'package:instagram_clone/common_widgets/custom_text_form_field.dart';
 import 'package:instagram_clone/core/globals.dart';
+import 'package:instagram_clone/core/session_details.dart';
 import 'package:instagram_clone/features/signup/views/signup_page_2.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
@@ -21,12 +22,14 @@ class SignUpPage1 extends StatefulWidget {
 }
 
 class _SignUpPage1State extends State<SignUpPage1> {
-  late GlobalKey<FormState> formKey;
+  late GlobalKey<FormState> _formKey;
+  late TextEditingController _emailController;
 
   @override
   void initState() {
     super.initState();
-    formKey = GlobalKey<FormState>();
+    _formKey = GlobalKey<FormState>();
+    _emailController = TextEditingController();
   }
 
   @override
@@ -80,7 +83,7 @@ class _SignUpPage1State extends State<SignUpPage1> {
                   ),
                 ),
                 Form(
-                  key: formKey,
+                  key: _formKey,
                   autovalidateMode: AutovalidateMode.disabled,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -94,6 +97,7 @@ class _SignUpPage1State extends State<SignUpPage1> {
                           bottom: deviceHeight * 0.03,
                         ),
                         child: CustomTextFormField(
+                          controller: _emailController,
                           textInputType: TextInputType.emailAddress,
                           hintText: Constants.emailHintText,
                           validator: (email) {
@@ -115,11 +119,14 @@ class _SignUpPage1State extends State<SignUpPage1> {
                         ),
                         child: CustomButton(
                           title: Constants.nextButtonText,
-                          onPressed: () {
-                            if (formKey.currentState?.validate() ?? false) {
-                              formKey.currentState?.reset();
-                              context.push(SignUpPage2.routeName).then(
-                                    (_) => formKey.currentState?.reset(),
+                          onPressed: () async {
+                            if (_formKey.currentState?.validate() ?? false) {
+                              await SessionDetails().setUserEmail(
+                                email: _emailController.text.trim(),
+                              );
+                              _formKey.currentState?.reset();
+                              await context.push(SignUpPage2.routeName).then(
+                                    (_) => _formKey.currentState?.reset(),
                                   );
                             }
                           },
