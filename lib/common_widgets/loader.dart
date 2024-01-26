@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/core/globals.dart';
 
+import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/my_theme.dart';
 
 class LoaderWidget extends StatelessWidget {
@@ -17,7 +17,7 @@ class LoaderManager {
   LoaderManager._sharedInstance();
   static final LoaderManager _shared = LoaderManager._sharedInstance();
   factory LoaderManager() => _shared;
-  late OverlayEntry _overlayEntry;
+  OverlayEntry? _overlayEntry;
 
   void showLoader(BuildContext context) {
     _overlayEntry = OverlayEntry(
@@ -29,10 +29,12 @@ class LoaderManager {
       ),
     );
 
-    Overlay.of(context).insert(_overlayEntry);
+    Overlay.of(context).insert(_overlayEntry!);
   }
 
   void hideLoader() {
-    _overlayEntry.remove();
+    if (_overlayEntry != null) {
+      _overlayEntry!.remove();
+    }
   }
 }

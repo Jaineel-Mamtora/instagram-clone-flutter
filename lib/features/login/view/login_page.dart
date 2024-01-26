@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:instagram_clone/core/globals.dart';
@@ -37,7 +39,9 @@ class _LoginPageState extends State<LoginPage> {
         physics: const ClampingScrollPhysics(),
         child: SafeArea(
           child: Container(
-            height: deviceHeight - deviceTopPadding,
+            height: deviceHeight -
+                deviceTopPadding -
+                (Platform.isIOS ? deviceBottomPadding : 0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: MyColors.loginBackgroundGradientColors,

@@ -38,7 +38,9 @@ class _SignUpPage1State extends State<SignUpPage1> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-            height: deviceHeight - deviceTopPadding,
+            height: deviceHeight -
+                deviceTopPadding -
+                (Platform.isIOS ? deviceBottomPadding : 0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: MyColors.loginBackgroundGradientColors,

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:instagram_clone/common_widgets/custom_button.dart';
 import 'package:instagram_clone/common_widgets/custom_text_form_field.dart';
+import 'package:instagram_clone/core/custom_router.dart';
 import 'package:instagram_clone/core/globals.dart';
+import 'package:instagram_clone/core/session_details.dart';
 import 'package:instagram_clone/features/home/view/home_page.dart';
+import 'package:instagram_clone/features/login/bloc/login_bloc.dart';
+import 'package:instagram_clone/features/login/bloc/login_event.dart';
+import 'package:instagram_clone/features/login/bloc/login_state.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
 
@@ -54,22 +60,37 @@ class LoginForm extends StatelessWidget {
               right: deviceWidth * 0.05,
               bottom: deviceHeight * 0.02,
             ),
-            child: CustomTextFormField(
-              controller: passwordController,
-              obscure: true,
-              hintText: Constants.passwordHintText,
-              validator: (password) {
-                if (password?.isEmpty ?? false) {
-                  return Constants.passwordEmptyErrorText;
-                } else {
-                  RegExp passwordRegex = RegExp(Constants.passwordRegex);
-                  if (!passwordRegex.hasMatch(password ?? '')) {
-                    return Constants.passwordRegExpMismatchErrorText;
+            child: BlocBuilder<LoginBloc, LoginState>(
+                builder: (context, loginState) {
+              bool obscure = loginState is LoginPasswordObscure;
+              return CustomTextFormField(
+                controller: passwordController,
+                obscure: obscure,
+                hintText: Constants.passwordHintText,
+                suffixIcon: Padding(
+                  padding: EdgeInsets.only(right: deviceWidth * 0.005),
+                  child: IconButton(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onPressed: () {
+                      context.read<LoginBloc>().add(
+                            LoginTogglePasswordVisibility(),
+                          );
+                    },
+                    icon: Icon(
+                      obscure ? MdiIcons.eyeOff : MdiIcons.eye,
+                      size: deviceWidth * 0.06,
+                    ),
+                  ),
+                ),
+                validator: (password) {
+                  if (password?.isEmpty ?? false) {
+                    return Constants.passwordEmptyErrorText;
                   }
-                }
-                return null;
-              },
-            ),
+                  return null;
+                },
+              );
+            }),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -79,12 +100,14 @@ class LoginForm extends StatelessWidget {
             ),
             child: CustomButton(
               title: Constants.loginButtonText,
-              onPressed: () {
+              onPressed: () async {
                 if (formKey.currentState?.validate() ?? false) {
-                  formKey.currentState?.reset();
-                  context.push(HomePage.routeName).then(
-                        (_) => formKey.currentState?.reset(),
-                      );
+                  await loginUser(
+                    context,
+                    formKey: formKey,
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim(),
+                  );
                 }
               },
               textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
@@ -113,5 +136,25 @@ class LoginForm extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> loginUser(
+    BuildContext context, {
+    required GlobalKey<FormState> formKey,
+    required String email,
+    required String password,
+  }) async {
+    if (email.isNotEmpty && password.isNotEmpty) {
+      await SessionDetails()
+          .userLogin(context, email: email, password: password)
+          .then((valid) async {
+        if (valid) {
+          await SessionDetails().setLoginStatus(status: true);
+          AppRouter.router.pushReplacement(HomePage.routeName).then(
+                (_) => formKey.currentState?.reset(),
+              );
+        }
+      });
+    }
   }
 }

@@ -8,6 +8,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import 'package:instagram_clone/common_widgets/custom_button.dart';
 import 'package:instagram_clone/common_widgets/custom_text_form_field.dart';
+import 'package:instagram_clone/core/custom_router.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/core/session_details.dart';
 import 'package:instagram_clone/features/home/view/home_page.dart';
@@ -43,7 +44,9 @@ class _SignUpPage2State extends State<SignUpPage2> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-            height: deviceHeight - deviceTopPadding,
+            height: deviceHeight -
+                deviceTopPadding -
+                (Platform.isIOS ? deviceBottomPadding : 0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: MyColors.loginBackgroundGradientColors,
@@ -166,7 +169,10 @@ class _SignUpPage2State extends State<SignUpPage2> {
                           title: Constants.nextButtonText,
                           onPressed: () async {
                             if (_formKey.currentState?.validate() ?? false) {
-                              await saveCredentialsAndRegisterUser(context);
+                              await registerUser(
+                                context,
+                                password: _passwordController.text.trim(),
+                              );
                             }
                           },
                           textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
@@ -218,23 +224,25 @@ class _SignUpPage2State extends State<SignUpPage2> {
     );
   }
 
-  Future<void> saveCredentialsAndRegisterUser(BuildContext context) async {
-    await SessionDetails().setUserPassword(
-      password: _passwordController.text.trim(),
-    );
+  Future<void> registerUser(
+    BuildContext context, {
+    required String password,
+  }) async {
     if ((await SessionDetails().getUserEmail()).isNotEmpty &&
-        (await SessionDetails().getUserPassword()).isNotEmpty) {
+        password.isNotEmpty) {
       await SessionDetails()
           .userSignUp(
+        context,
         email: await SessionDetails().getUserEmail(),
-        password: await SessionDetails().getUserPassword(),
+        password: password,
       )
-          .then((value) async {
-        SessionDetails().setLoginStatus(status: true);
-        _formKey.currentState?.reset();
-        await context.push(HomePage.routeName).then(
-              (_) => _formKey.currentState?.reset(),
-            );
+          .then((valid) async {
+        if (valid) {
+          await SessionDetails().setLoginStatus(status: true);
+          AppRouter.router.pushReplacementNamed(HomePage.routeName).then(
+                (_) => _formKey.currentState?.reset(),
+              );
+        }
       });
     }
   }
