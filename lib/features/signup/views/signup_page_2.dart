@@ -2,16 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:instagram_clone/core/session_details.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 
 import 'package:instagram_clone/common_widgets/custom_button.dart';
 import 'package:instagram_clone/common_widgets/custom_text_form_field.dart';
 import 'package:instagram_clone/core/globals.dart';
+import 'package:instagram_clone/core/session_details.dart';
 import 'package:instagram_clone/features/home/view/home_page.dart';
-import 'package:instagram_clone/features/signup/providers/signup_provider.dart';
+import 'package:instagram_clone/features/signup/bloc/signup_bloc.dart';
+import 'package:instagram_clone/features/signup/bloc/signup_event.dart';
+import 'package:instagram_clone/features/signup/bloc/signup_state.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
 
@@ -113,43 +115,45 @@ class _SignUpPage2State extends State<SignUpPage2> {
                           right: deviceWidth * 0.05,
                           bottom: deviceHeight * 0.03,
                         ),
-                        child: Selector<SignUpProvider, bool>(
-                          selector: (_, signUpProvider) =>
-                              signUpProvider.obscure,
-                          builder: (_, obscure, __) => CustomTextFormField(
-                            controller: _passwordController,
-                            obscure: obscure,
-                            suffixIcon: Padding(
-                              padding:
-                                  EdgeInsets.only(right: deviceWidth * 0.005),
-                              child: IconButton(
-                                splashColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onPressed: () {
-                                  context.read<SignUpProvider>().setObscure =
-                                      !obscure;
-                                },
-                                icon: Icon(
-                                  obscure ? MdiIcons.eyeOff : MdiIcons.eye,
-                                  size: deviceWidth * 0.06,
+                        child: BlocBuilder<SignupBloc, SignupState>(
+                          builder: (_, signupState) {
+                            bool obscure = signupState is SignupPasswordObscure;
+                            return CustomTextFormField(
+                              controller: _passwordController,
+                              obscure: obscure,
+                              suffixIcon: Padding(
+                                padding:
+                                    EdgeInsets.only(right: deviceWidth * 0.005),
+                                child: IconButton(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onPressed: () {
+                                    context.read<SignupBloc>().add(
+                                          SignupTogglePasswordVisibility(),
+                                        );
+                                  },
+                                  icon: Icon(
+                                    obscure ? MdiIcons.eyeOff : MdiIcons.eye,
+                                    size: deviceWidth * 0.06,
+                                  ),
                                 ),
                               ),
-                            ),
-                            hintText: Constants.passwordHintText,
-                            validator: (password) {
-                              if (password?.isEmpty ?? false) {
-                                return Constants.passwordEmptyErrorText;
-                              } else {
-                                RegExp passwordRegex =
-                                    RegExp(Constants.passwordRegex);
-                                if (!passwordRegex.hasMatch(password ?? '')) {
-                                  return Constants
-                                      .signUpPasswordRegExpMismatchErrorText;
+                              hintText: Constants.passwordHintText,
+                              validator: (password) {
+                                if (password?.isEmpty ?? false) {
+                                  return Constants.passwordEmptyErrorText;
+                                } else {
+                                  RegExp passwordRegex =
+                                      RegExp(Constants.passwordRegex);
+                                  if (!passwordRegex.hasMatch(password ?? '')) {
+                                    return Constants
+                                        .signUpPasswordRegExpMismatchErrorText;
+                                  }
                                 }
-                              }
-                              return null;
-                            },
-                          ),
+                                return null;
+                              },
+                            );
+                          },
                         ),
                       ),
                       Padding(

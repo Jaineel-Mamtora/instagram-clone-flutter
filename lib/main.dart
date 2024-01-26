@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:go_router/go_router.dart';
-import 'package:instagram_clone/core/session_details.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:instagram_clone/core/globals.dart';
+import 'package:instagram_clone/core/session_details.dart';
 import 'package:instagram_clone/features/home/view/home_page.dart';
 import 'package:instagram_clone/features/login/view/login_page.dart';
-import 'package:instagram_clone/features/signup/providers/signup_provider.dart';
+import 'package:instagram_clone/features/signup/bloc/signup_bloc.dart';
 import 'package:instagram_clone/features/signup/views/signup_page_1.dart';
 import 'package:instagram_clone/features/signup/views/signup_page_2.dart';
 import 'package:instagram_clone/firebase_options.dart';
@@ -99,10 +99,8 @@ class MyApp extends StatelessWidget {
     deviceBottomPadding = media.padding.bottom;
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => SignUpProvider()),
-        ],
+      child: BlocProvider(
+        create: (_) => SignupBloc(),
         child: MaterialApp.router(
           title: 'Instagram Clone',
           theme: lightTheme,
