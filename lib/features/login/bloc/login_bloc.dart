@@ -9,7 +9,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       (event, emit) {
         if (state is LoginPasswordVisible) {
           emit(LoginPasswordObscure());
-        } else {
+        } else if (state is LoginPasswordObscure) {
           emit(LoginPasswordVisible());
         }
       },

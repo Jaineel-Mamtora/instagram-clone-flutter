@@ -91,14 +91,15 @@ class SessionDetails {
     } on FirebaseAuthException catch (e) {
       debugPrint('Jaineel -> ${e.code}');
       LoaderManager().hideLoader();
-      if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
+      if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||
+          e.code == 'invalid-credential') {
         hideSnackBar();
         showSnackBar(message: 'Incorrect email or password.');
       }
       if (e.code == 'user-not-found') {
         hideSnackBar();
         showSnackBar(message: 'No user found for this email.');
-      } else if (e.code == 'wrong-password' || e.code == 'invalid-credential') {
+      } else if (e.code == 'wrong-password') {
         hideSnackBar();
         showSnackBar(message: 'Password is incorrect.');
       } else if (e.code == 'too-many-requests') {

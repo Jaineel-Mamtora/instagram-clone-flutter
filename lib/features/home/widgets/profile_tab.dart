@@ -18,8 +18,8 @@ class ProfileTab extends StatelessWidget {
     return Center(
       child: CustomButton(
         title: 'Logout',
-        size: Size(deviceWidth / 2, deviceHeight * 0.06),
-        borderColor: lightTheme.colorScheme.secondary,
+        size: Size(deviceWidth / 2.5, deviceHeight * 0.06),
+        borderColor: lightTheme.colorScheme.secondary.withOpacity(0.3),
         borderRadius: deviceWidth * 0.02,
         textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w500,

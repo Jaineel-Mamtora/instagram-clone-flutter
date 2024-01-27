@@ -9,7 +9,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       (event, emit) {
         if (state is SignupPasswordVisible) {
           emit(SignupPasswordObscure());
-        } else {
+        } else if (state is SignupPasswordObscure) {
           emit(SignupPasswordVisible());
         }
       },
