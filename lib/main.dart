@@ -12,8 +12,6 @@ import 'package:instagram_clone/core/custom_router.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/core/session_details.dart';
 import 'package:instagram_clone/features/home/bloc/home_bloc.dart';
-import 'package:instagram_clone/features/login/bloc/login_bloc.dart';
-import 'package:instagram_clone/features/signup/bloc/signup_bloc.dart';
 import 'package:instagram_clone/firebase_options.dart';
 import 'package:instagram_clone/my_theme.dart';
 
@@ -63,8 +61,6 @@ class MyApp extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => SignupBloc()),
-          BlocProvider(create: (_) => LoginBloc()),
           BlocProvider(create: (_) => HomeBloc()),
         ],
         child: MaterialApp.router(
