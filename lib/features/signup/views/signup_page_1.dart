@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:instagram_clone/common_widgets/custom_button.dart';
-import 'package:instagram_clone/common_widgets/custom_text_form_field.dart';
+import 'package:instagram_clone/common/widgets/custom_button.dart';
+import 'package:instagram_clone/common/widgets/custom_text_form_field.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/core/session_details.dart';
 import 'package:instagram_clone/features/signup/views/signup_page_2.dart';

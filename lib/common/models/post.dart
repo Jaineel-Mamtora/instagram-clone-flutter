@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:instagram_clone/models/profile_details.dart';
+import 'package:instagram_clone/common/models/profile_details.dart';
 
 part 'post.g.dart';
 

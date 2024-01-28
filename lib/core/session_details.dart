@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logger/logger.dart';
 
-import 'package:instagram_clone/common_widgets/custom_snackbar.dart';
-import 'package:instagram_clone/common_widgets/loader.dart';
+import 'package:instagram_clone/common/widgets/custom_snackbar.dart';
+import 'package:instagram_clone/common/widgets/loader.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/utils/constants.dart';
 

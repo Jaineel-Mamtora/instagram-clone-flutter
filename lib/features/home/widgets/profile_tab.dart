@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:instagram_clone/common_widgets/custom_button.dart';
-import 'package:instagram_clone/common_widgets/loader.dart';
+import 'package:instagram_clone/common/widgets/custom_button.dart';
+import 'package:instagram_clone/common/widgets/loader.dart';
 import 'package:instagram_clone/core/custom_router.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/core/session_details.dart';

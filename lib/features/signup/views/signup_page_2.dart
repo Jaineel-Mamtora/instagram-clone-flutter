@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'package:instagram_clone/common_widgets/custom_button.dart';
-import 'package:instagram_clone/common_widgets/custom_text_form_field.dart';
+import 'package:instagram_clone/common/widgets/custom_button.dart';
+import 'package:instagram_clone/common/widgets/custom_text_form_field.dart';
 import 'package:instagram_clone/core/custom_router.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/core/session_details.dart';

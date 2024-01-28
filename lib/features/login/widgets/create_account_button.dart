@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:instagram_clone/common_widgets/custom_button.dart';
+import 'package:instagram_clone/common/widgets/custom_button.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/features/signup/views/signup_page_1.dart';
 import 'package:instagram_clone/my_theme.dart';
