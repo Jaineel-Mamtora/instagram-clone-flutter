@@ -73,7 +73,7 @@ class Constants {
 }
 
 class SharedPreferenceConstants {
-  static const String isLoggedInKey = 'IS_LOGGED_IN';
+  static const String userKey = 'USER';
   static const String userEmailKey = 'USER_EMAIL';
   static const String userPasswordKey = 'USER_PASSWORD';
 }

@@ -1,28 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:logger/logger.dart';
 
+import 'package:instagram_clone/common/models/user.dart';
 import 'package:instagram_clone/common/widgets/custom_snackbar.dart';
 import 'package:instagram_clone/common/widgets/loader.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/utils/constants.dart';
 
 class SessionDetails {
-  Future<bool> getLoginStatus() async =>
-      sharedPreferences.getBool(
-        SharedPreferenceConstants.isLoggedInKey,
-      ) ??
-      false;
-
-  Future<void> setLoginStatus({required bool status}) async {
-    isLoggedIn = status;
-    sharedPreferences.setBool(
-      SharedPreferenceConstants.isLoggedInKey,
-      status,
-    );
-  }
-
   Future<void> setUserEmail({
     required String email,
   }) async =>
@@ -31,11 +20,28 @@ class SessionDetails {
         email,
       );
 
-  Future<String> getUserEmail() async =>
+  String getUserEmail() =>
       sharedPreferences.getString(
         SharedPreferenceConstants.userEmailKey,
       ) ??
       '';
+
+  Future<void> setUser({required User user}) async {
+    final encodedUser = jsonEncode(user.toJson());
+    await sharedPreferences.setString(
+        SharedPreferenceConstants.userKey, encodedUser);
+  }
+
+  User getUser() {
+    final encodedUser =
+        sharedPreferences.getString(SharedPreferenceConstants.userKey) ?? '';
+    if (encodedUser.isNotEmpty) {
+      final user = User.fromJson(jsonDecode(encodedUser));
+      return user;
+    } else {
+      return User.empty();
+    }
+  }
 
   Future<bool> userSignUp(
     BuildContext context, {
@@ -44,13 +50,13 @@ class SessionDetails {
   }) async {
     LoaderManager().showLoader(context);
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await auth.FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       LoaderManager().hideLoader();
       return true;
-    } on FirebaseAuthException catch (e) {
+    } on auth.FirebaseAuthException catch (e) {
       LoaderManager().hideLoader();
       if (e.code == 'email-already-in-use') {
         hideSnackBar();
@@ -79,7 +85,7 @@ class SessionDetails {
   }) async {
     LoaderManager().showLoader(context);
     try {
-      await FirebaseAuth.instance
+      await auth.FirebaseAuth.instance
           .signInWithEmailAndPassword(
             email: email,
             password: password,
@@ -88,7 +94,7 @@ class SessionDetails {
             (value) => LoaderManager().hideLoader(),
           );
       return true;
-    } on FirebaseAuthException catch (e) {
+    } on auth.FirebaseAuthException catch (e) {
       debugPrint('Jaineel -> ${e.code}');
       LoaderManager().hideLoader();
       if (e.code == 'INVALID_LOGIN_CREDENTIALS' ||

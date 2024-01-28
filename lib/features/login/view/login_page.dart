@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instagram_clone/common/bloc/common_bloc.dart';
 
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/features/login/widgets/create_account_button.dart';
@@ -36,45 +34,42 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     print('$deviceHeight, $deviceWidth');
-    return BlocProvider(
-      create: (_) => PasswordBloc(),
-      child: Scaffold(
-        body: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: SafeArea(
-            child: Container(
-              height: deviceHeight -
-                  deviceTopPadding -
-                  (Platform.isIOS ? deviceBottomPadding : 0),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: MyColors.loginBackgroundGradientColors,
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: SafeArea(
+          child: Container(
+            height: deviceHeight -
+                deviceTopPadding -
+                (Platform.isIOS ? deviceBottomPadding : 0),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: MyColors.loginBackgroundGradientColors,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: deviceHeight * (75 / deviceHeight),
                 ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: deviceHeight * (75 / deviceHeight),
-                  ),
-                  InstagramLogoHeader(),
-                  SizedBox(
-                    height: deviceHeight * (75 / deviceHeight),
-                  ),
-                  LoginForm(
-                    formKey: formKey,
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                  ),
-                  Spacer(),
-                  CreateAccountButton(),
-                  MetaLogoFooter(),
-                ],
-              ),
+                InstagramLogoHeader(),
+                SizedBox(
+                  height: deviceHeight * (75 / deviceHeight),
+                ),
+                LoginForm(
+                  formKey: formKey,
+                  emailController: _emailController,
+                  passwordController: _passwordController,
+                ),
+                Spacer(),
+                CreateAccountButton(),
+                MetaLogoFooter(),
+              ],
             ),
           ),
         ),

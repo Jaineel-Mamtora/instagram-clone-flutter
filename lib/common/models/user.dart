@@ -22,6 +22,10 @@ class User extends Equatable {
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
+  factory User.empty() => User(id: '');
+
+  bool isEmpty() => id.isEmpty;
+
   @override
   List<Object?> get props => [id];
 }

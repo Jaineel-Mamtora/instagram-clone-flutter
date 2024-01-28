@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 
+import 'package:instagram_clone/common/models/user.dart';
 import 'package:instagram_clone/common/widgets/custom_button.dart';
 import 'package:instagram_clone/common/widgets/loader.dart';
 import 'package:instagram_clone/core/custom_router.dart';
@@ -27,9 +28,9 @@ class ProfileTab extends StatelessWidget {
         onPressed: () {
           LoaderManager().showLoader(context);
           Future.delayed(Duration(seconds: 1), () async {
-            await FirebaseAuth.instance.signOut().then(
+            await auth.FirebaseAuth.instance.signOut().then(
               (_) async {
-                await SessionDetails().setLoginStatus(status: false);
+                await SessionDetails().setUser(user: User.empty());
                 AppRouter.router.pushReplacement(LoginPage.routeName);
                 LoaderManager().hideLoader();
               },
