@@ -6,11 +6,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/features/home/bloc/home_bloc.dart';
 import 'package:instagram_clone/features/home/bloc/home_event.dart';
-import 'package:instagram_clone/features/home/widgets/add_content_tab.dart';
-import 'package:instagram_clone/features/home/widgets/home_tab.dart';
-import 'package:instagram_clone/features/home/widgets/profile_tab.dart';
-import 'package:instagram_clone/features/home/widgets/reels_tab.dart';
-import 'package:instagram_clone/features/home/widgets/search_tab.dart';
+import 'package:instagram_clone/features/home/view/tabs/add_content_tab.dart';
+import 'package:instagram_clone/features/home/view/tabs/home_tab.dart';
+import 'package:instagram_clone/features/home/view/tabs/profile_tab.dart';
+import 'package:instagram_clone/features/home/view/tabs/reels_tab.dart';
+import 'package:instagram_clone/features/home/view/tabs/search_tab.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
 
@@ -29,44 +29,57 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(
-      'device dimensions (width, height): '
-      '($deviceWidth, $deviceHeight)',
-    );
     return BlocBuilder<HomeBloc, int>(
       builder: (_, index) {
         return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            surfaceTintColor: Colors.transparent,
-            centerTitle: false,
-            title: Text(
-              Constants.appName,
-              style: lightTheme.textTheme.displayLarge,
+          body: SafeArea(
+            child: NestedScrollView(
+              floatHeaderSlivers: true,
+              headerSliverBuilder: (_, __) => [
+                SliverAppBar(
+                  bottom: PreferredSize(
+                    preferredSize: Size(deviceWidth, 1),
+                    child: Divider(
+                      height: 1,
+                      thickness: 1,
+                      color: lightTheme.colorScheme.secondary.withOpacity(0.2),
+                    ),
+                  ),
+                  snap: true,
+                  floating: true,
+                  automaticallyImplyLeading: false,
+                  surfaceTintColor: Colors.transparent,
+                  centerTitle: false,
+                  title: Text(
+                    Constants.appName,
+                    style: lightTheme.textTheme.displayLarge,
+                  ),
+                  actions: [
+                    IconButton(
+                      onPressed: () {},
+                      tooltip: Constants.notifications,
+                      icon: SvgPicture.asset(
+                        Constants.pathToLikeUnselectedLightThemeSvg,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      tooltip: Constants.messages,
+                      icon: SvgPicture.asset(
+                        Constants.pathToMessengerLightThemeSvg,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+              body: tabs[index],
             ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                tooltip: Constants.notifications,
-                icon: SvgPicture.asset(
-                  Constants.pathToLikeUnselectedLightThemeSvg,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                tooltip: Constants.messages,
-                icon: SvgPicture.asset(
-                  Constants.pathToMessengerLightThemeSvg,
-                ),
-              ),
-            ],
           ),
-          body: tabs[index],
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(
-                  color: Color(0xFFDADADA),
+                  color: lightTheme.colorScheme.secondary.withOpacity(0.2),
                   width: 1,
                   style: BorderStyle.solid,
                 ),

@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_clone/common/models/profile_details.dart';
+import 'package:instagram_clone/utils/constants.dart';
 import 'package:logger/logger.dart';
 
 import 'package:instagram_clone/common/models/user.dart';
@@ -19,9 +22,19 @@ class SignupBloc extends Bloc<SignUpButtonClicked, SignupState> {
         )
             .then((auth.UserCredential credential) async {
           if (credential.user != null) {
-            await SessionDetails().setUser(
-              user: User(id: credential.user!.uid),
+            final user = User(
+              id: credential.user!.uid,
+              profileDetails: ProfileDetails(
+                email: credential.user!.email,
+              ),
             );
+            await SessionDetails().setUser(
+              user: user,
+            );
+            final users = FirebaseFirestore.instance
+                .collection(FirebaseDbConstants.usersCollectionName);
+            final userDocument = users.doc(user.id);
+            await userDocument.set(user.toJson());
             emit(StopLoading());
             emit(Done());
           } else {

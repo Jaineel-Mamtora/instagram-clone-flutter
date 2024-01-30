@@ -72,6 +72,10 @@ class Constants {
   static const String pathToMetaLogoSvg = 'assets/icons/meta_logo.svg';
 }
 
+class FirebaseDbConstants {
+  static const String usersCollectionName = 'users';
+}
+
 class SharedPreferenceConstants {
   static const String userKey = 'USER';
   static const String userEmailKey = 'USER_EMAIL';
