@@ -35,6 +35,7 @@ class CustomButton extends StatelessWidget {
               fontWeight: FontWeight.bold,
               letterSpacing: 1.1,
             ),
+        textAlign: TextAlign.center,
       ),
       style: OutlinedButton.styleFrom(
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,

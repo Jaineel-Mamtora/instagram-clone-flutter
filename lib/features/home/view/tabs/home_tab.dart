@@ -49,7 +49,7 @@ class HomeTab extends StatelessWidget {
                     : Colors.white,
               );
             },
-          )
+          ),
         ],
       ),
     );

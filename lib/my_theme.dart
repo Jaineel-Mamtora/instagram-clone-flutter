@@ -24,6 +24,7 @@ final ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w500,
       fontSize: 20.0,
       height: 1.5,
+      
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     bodyMedium: TextStyle(

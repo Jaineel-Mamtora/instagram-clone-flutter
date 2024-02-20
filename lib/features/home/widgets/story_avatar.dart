@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class StoryAvatar extends StatelessWidget {
   const StoryAvatar({
