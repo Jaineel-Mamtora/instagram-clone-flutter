@@ -11,29 +11,26 @@ class AddContentTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(
-          child: Padding(
-            padding: EdgeInsets.only(top: deviceHeight * 0.02),
-            child: CustomButton(
-              title: 'Add Random Post',
-              size: Size(deviceWidth / 2.5, deviceHeight * 0.06),
-              borderColor: lightTheme.colorScheme.secondary.withOpacity(0.3),
-              borderRadius: deviceWidth * 0.02,
-              textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-              onPressed: () async {
-                final url = await FirebaseStorage.instance
-                    .ref('images/cycle_music.jpg')
-                    .getDownloadURL();
-                debugPrint('Jaineel -> $url');
-              },
-            ),
-          ),
+    return Center(
+      child: CustomButton(
+        contentPadding: EdgeInsets.symmetric(
+          vertical: deviceHeight * 0.015,
+          horizontal: deviceWidth * 0.02,
         ),
-      ],
+        title: 'Add Random Post',
+        borderColor: lightTheme.colorScheme.secondary.withOpacity(0.3),
+        borderRadius: deviceWidth * 0.02,
+        textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        
+        onPressed: () async {
+          final url = await FirebaseStorage.instance
+              .ref('images/cycle_music.jpg')
+              .getDownloadURL();
+          debugPrint('Jaineel -> $url');
+        },
+      ),
     );
   }
 }

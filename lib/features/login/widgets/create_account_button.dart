@@ -23,6 +23,11 @@ class CreateAccountButton extends StatelessWidget {
       ),
       child: CustomButton(
         title: Constants.createNewAccountButtonText,
+        isFullWidth: true,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: deviceHeight * 0.015,
+          horizontal: deviceWidth * 0.02,
+        ),
         onPressed: () {
           context.push(SignUpPage1.routeName);
         },

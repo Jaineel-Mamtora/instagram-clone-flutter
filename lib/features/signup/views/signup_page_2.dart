@@ -196,6 +196,11 @@ class _SignUpPage2State extends State<SignUpPage2> {
                           },
                           child: CustomButton(
                             title: Constants.nextButtonText,
+                            isFullWidth: true,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: deviceHeight * 0.015,
+                              horizontal: deviceWidth * 0.02,
+                            ),
                             onPressed: () async {
                               if (_formKey.currentState?.validate() ?? false) {
                                 context.read<SignupBloc>().add(

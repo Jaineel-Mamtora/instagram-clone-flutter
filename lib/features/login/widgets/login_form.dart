@@ -125,6 +125,11 @@ class LoginForm extends StatelessWidget {
               },
               child: CustomButton(
                 title: Constants.loginButtonText,
+                isFullWidth: true,
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: deviceHeight * 0.015,
+                  horizontal: deviceWidth * 0.02,
+                ),
                 onPressed: () async {
                   if (formKey.currentState?.validate() ?? false) {
                     context.read<LoginBloc>().add(
