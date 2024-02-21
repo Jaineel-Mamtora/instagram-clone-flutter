@@ -74,6 +74,7 @@ class Constants {
 
 class FirebaseDbConstants {
   static const String usersCollectionName = 'users';
+  static const String commonsCollectionName = 'commons';
 }
 
 class SharedPreferenceConstants {

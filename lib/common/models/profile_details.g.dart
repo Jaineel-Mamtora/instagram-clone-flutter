@@ -9,6 +9,7 @@ part of 'profile_details.dart';
 ProfileDetails _$ProfileDetailsFromJson(Map<String, dynamic> json) =>
     ProfileDetails(
       email: json['email'] as String?,
+      username: json['username'] as String?,
       profilePhotoUrl: json['profilePhotoUrl'] as String?,
       bio: json['bio'] as String?,
       followersCount: json['followersCount'] as int? ?? 0,
@@ -18,6 +19,7 @@ ProfileDetails _$ProfileDetailsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ProfileDetailsToJson(ProfileDetails instance) =>
     <String, dynamic>{
       'email': instance.email,
+      'username': instance.username,
       'profilePhotoUrl': instance.profilePhotoUrl,
       'bio': instance.bio,
       'followersCount': instance.followersCount,

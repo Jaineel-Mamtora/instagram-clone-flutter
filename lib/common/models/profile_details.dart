@@ -6,6 +6,7 @@ part 'profile_details.g.dart';
 @JsonSerializable()
 class ProfileDetails extends Equatable {
   final String? email;
+  final String? username;
   final String? profilePhotoUrl;
   final String? bio;
   final int followersCount;
@@ -13,6 +14,7 @@ class ProfileDetails extends Equatable {
 
   ProfileDetails({
     this.email,
+    this.username,
     this.profilePhotoUrl,
     this.bio,
     this.followersCount = 0,
