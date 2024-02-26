@@ -70,6 +70,12 @@ class Constants {
   static const String pathToInstagramLogoSvg =
       'assets/icons/instagram_logo.svg';
   static const String pathToMetaLogoSvg = 'assets/icons/meta_logo.svg';
+  static const String pathToCommentLightTheme =
+      'assets/icons/comment_light_theme.svg';
+  static const String pathToShareLightTheme =
+      'assets/icons/share_light_theme.svg';
+  static const String pathToSaveLightTheme =
+      'assets/icons/save_light_theme.svg';
 }
 
 class FirebaseDbConstants {

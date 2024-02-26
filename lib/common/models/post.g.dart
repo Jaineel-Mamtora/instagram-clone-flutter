@@ -20,6 +20,7 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
       hashtags: (json['hashtags'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      createdOn: (json['createdOn'] as Timestamp).toDate(),
     );
 
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
@@ -30,4 +31,5 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'comments': instance.comments,
       'isSaved': instance.isSaved,
       'hashtags': instance.hashtags,
+      'createdOn': instance.createdOn,
     };

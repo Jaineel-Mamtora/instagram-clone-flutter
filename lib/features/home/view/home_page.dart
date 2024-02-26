@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, int>(
+    return BlocBuilder<TabBloc, int>(
       builder: (_, index) {
         return Scaffold(
           body: SafeArea(
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
               surfaceTintColor: Colors.transparent,
               indicatorColor: Colors.white,
               selectedIndex: index,
-              onDestinationSelected: (index) => context.read<HomeBloc>().add(
+              onDestinationSelected: (index) => context.read<TabBloc>().add(
                     ChangeHomeTabIndex(index: index),
                   ),
               destinations: [

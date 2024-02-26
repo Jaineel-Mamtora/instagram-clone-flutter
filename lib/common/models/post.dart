@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -9,6 +10,8 @@ part 'post.g.dart';
 class Post extends Equatable {
   final ProfileDetails postedBy;
   final List<String> imageUrls;
+
+  final DateTime createdOn;
   final String? postContent;
   final int likeCount;
   final List<String>? comments;
@@ -18,6 +21,7 @@ class Post extends Equatable {
   Post({
     required this.postedBy,
     required this.imageUrls,
+    required this.createdOn,
     this.postContent,
     this.likeCount = 0,
     this.comments,
@@ -30,5 +34,5 @@ class Post extends Equatable {
   Map<String, dynamic> toJson() => _$PostToJson(this);
 
   @override
-  List<Object?> get props => [postedBy];
+  List<Object?> get props => [postedBy, createdOn];
 }

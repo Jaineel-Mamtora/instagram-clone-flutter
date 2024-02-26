@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:instagram_clone/features/home/bloc/home_event.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:instagram_clone/common/bloc/common_bloc.dart';
@@ -64,7 +65,8 @@ class MyApp extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => HomeBloc()),
+          BlocProvider(create: (_) => TabBloc()),
+          BlocProvider(create: (_) => HomeBloc()..add(FetchCommonPosts())),
           BlocProvider(create: (_) => SignupBloc()),
           BlocProvider(create: (_) => LoginBloc()),
           BlocProvider(create: (_) => PasswordBloc()),

@@ -15,3 +15,10 @@ final class ChangeHomeTabIndex extends HomeEvent {
   @override
   List<Object?> get props => [index];
 }
+
+final class FetchCommonPosts extends HomeEvent {
+  const FetchCommonPosts();
+
+  @override
+  List<Object?> get props => [];
+}
