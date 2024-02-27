@@ -7,12 +7,15 @@ part of 'post.dart';
 // **************************************************************************
 
 Post _$PostFromJson(Map<String, dynamic> json) => Post(
+      id: json['id'] as String,
       postedBy:
           ProfileDetails.fromJson(json['postedBy'] as Map<String, dynamic>),
       imageUrls:
           (json['imageUrls'] as List<dynamic>).map((e) => e as String).toList(),
+      createdOn: Utility.timestampToDateTime(json['createdOn'] as Timestamp),
+      likedBy:
+          (json['likedBy'] as List<dynamic>).map((e) => e as String).toList(),
       postContent: json['postContent'] as String?,
-      likeCount: json['likeCount'] as int? ?? 0,
       comments: (json['comments'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -20,16 +23,16 @@ Post _$PostFromJson(Map<String, dynamic> json) => Post(
       hashtags: (json['hashtags'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      createdOn: (json['createdOn'] as Timestamp).toDate(),
     );
 
 Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
+      'id': instance.id,
       'postedBy': instance.postedBy.toJson(),
       'imageUrls': instance.imageUrls,
+      'createdOn': Utility.dateTimeToTimestamp(instance.createdOn),
       'postContent': instance.postContent,
-      'likeCount': instance.likeCount,
+      'likedBy': instance.likedBy,
       'comments': instance.comments,
       'isSaved': instance.isSaved,
       'hashtags': instance.hashtags,
-      'createdOn': instance.createdOn,
     };

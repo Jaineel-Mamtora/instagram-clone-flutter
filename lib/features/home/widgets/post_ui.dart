@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_clone/common/bloc/common_bloc.dart';
+import 'package:instagram_clone/common/bloc/common_event.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:instagram_clone/common/models/post.dart';
@@ -93,19 +96,32 @@ class PostUI extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(right: deviceWidth * 0.03),
-                      child: IconButton(
-                        style: IconButton.styleFrom(
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          visualDensity: VisualDensity.compact,
-                          padding: EdgeInsets.zero,
-                        ),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          Constants.pathToLikeUnselectedLightThemeSvg,
-                        ),
-                      ),
+                    BlocBuilder<LikeBloc, bool>(
+                      builder: (context, isLiked) {
+                        return Padding(
+                          padding: EdgeInsets.only(right: deviceWidth * 0.03),
+                          child: IconButton(
+                            style: IconButton.styleFrom(
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              visualDensity: VisualDensity.compact,
+                              padding: EdgeInsets.zero,
+                            ),
+                            onPressed: () {
+                              context.read<LikeBloc>().add(
+                                    LikeButtonClickedForPost(
+                                      id: post.id,
+                                      isLiked: isLiked,
+                                    ),
+                                  );
+                            },
+                            icon: SvgPicture.asset(
+                              isLiked
+                                  ? Constants.pathToLikeSelectedLightThemeSvg
+                                  : Constants.pathToLikeUnselectedLightThemeSvg,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: deviceWidth * 0.03),
@@ -152,7 +168,7 @@ class PostUI extends StatelessWidget {
                     bottom: deviceHeight * 0.005,
                   ),
                   child: Text(
-                    '502 likes',
+                    '${post.likedBy.length} likes',
                     style: lightTheme.textTheme.labelLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),

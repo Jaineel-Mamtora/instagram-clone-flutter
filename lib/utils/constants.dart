@@ -47,6 +47,8 @@ class Constants {
   /// svg image paths
   static const String pathToLikeUnselectedLightThemeSvg =
       'assets/icons/like_unselected_light_theme.svg';
+  static const String pathToLikeSelectedLightThemeSvg =
+      'assets/icons/like_selected_light_theme.svg';
   static const String pathToMessengerLightThemeSvg =
       'assets/icons/messenger_light_theme.svg';
   static const String pathToHomeUnselectedLightThemeSvg =

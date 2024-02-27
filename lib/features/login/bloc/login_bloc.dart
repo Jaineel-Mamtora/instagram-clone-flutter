@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_clone/common/models/profile_details.dart';
 import 'package:logger/logger.dart';
 
 import 'package:instagram_clone/common/models/user.dart';
@@ -20,7 +21,12 @@ class LoginBloc extends Bloc<LoginButtonClicked, LoginState> {
             .then((auth.UserCredential credential) async {
           if (credential.user != null) {
             await SessionDetails().setUser(
-              user: User(id: credential.user!.uid),
+              user: User(
+                id: credential.user!.uid,
+                profileDetails: ProfileDetails(
+                  email: event.email,
+                ),
+              ),
             );
             emit(StopLoading());
             emit(Done());

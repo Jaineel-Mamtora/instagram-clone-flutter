@@ -31,6 +31,7 @@ dependencies:
   flutter_native_splash: ^2.3.10
   bloc: ^8.1.3
   flutter_bloc: ^8.1.4
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_test:

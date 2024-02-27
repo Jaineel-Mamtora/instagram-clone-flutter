@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Utility {
   static String formatDateTimeAgo(DateTime dateTime) {
     DateTime now = DateTime.now();
@@ -12,4 +14,10 @@ class Utility {
       return 'Just now';
     }
   }
+
+  static DateTime timestampToDateTime(Timestamp timestamp) =>
+      timestamp.toDate();
+
+  static Timestamp dateTimeToTimestamp(DateTime dateTime) =>
+      Timestamp.fromDate(dateTime);
 }

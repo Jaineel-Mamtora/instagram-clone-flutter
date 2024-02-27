@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => TabBloc()),
+          BlocProvider(create: (_) => LikeBloc()),
           BlocProvider(create: (_) => HomeBloc()..add(FetchCommonPosts())),
           BlocProvider(create: (_) => SignupBloc()),
           BlocProvider(create: (_) => LoginBloc()),
