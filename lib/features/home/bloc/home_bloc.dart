@@ -22,7 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         final commons = FirebaseFirestore.instance
             .collection(FirebaseDbConstants.commonsCollectionName);
         final commonPostsDocs = (await commons.get()).docs;
-        List<Post> commonPosts = [];
+        var commonPosts = <Post>[];
         for (var element in commonPostsDocs) {
           commonPosts.add(Post.fromJson(element.data()));
         }

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:instagram_clone/common/bloc/common_bloc.dart';
-import 'package:instagram_clone/common/bloc/common_event.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import 'package:instagram_clone/common/bloc/common_bloc.dart';
+import 'package:instagram_clone/common/bloc/common_event.dart';
 import 'package:instagram_clone/common/models/post.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/my_theme.dart';
@@ -33,6 +33,7 @@ class PostUI extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+//? user profile icon
               Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: deviceHeight * 0.01,
@@ -42,12 +43,12 @@ class PostUI extends StatelessWidget {
                   child: ClipOval(
                     child: CachedNetworkImage(
                       imageUrl: post.postedBy.profilePhotoUrl!,
-                      height: deviceHeight * 0.05,
+                      height: deviceHeight * 0.04,
                       alignment: Alignment.topCenter,
                       placeholder: (_, __) {
                         return Icon(
                           MdiIcons.accountCircle,
-                          size: deviceHeight * 0.05,
+                          size: deviceHeight * 0.04,
                           color:
                               lightTheme.colorScheme.secondary.withOpacity(0.3),
                         );
@@ -56,10 +57,12 @@ class PostUI extends StatelessWidget {
                   ),
                 ),
               ),
+//? username
               Text(
                 post.postedBy.username ?? 'username',
                 style: lightTheme.textTheme.labelLarge,
               ),
+//? post menu button
               Spacer(),
               IconButton(
                 onPressed: () {},
@@ -71,6 +74,7 @@ class PostUI extends StatelessWidget {
               ),
             ],
           ),
+//? image/s
           Container(
             constraints: BoxConstraints(maxHeight: deviceHeight * 0.5),
             child: CachedNetworkImage(
