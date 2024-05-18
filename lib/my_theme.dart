@@ -24,7 +24,6 @@ final ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w500,
       fontSize: 20.0,
       height: 1.5,
-      
       color: Color.fromRGBO(0, 0, 0, 0.8),
     ),
     bodyMedium: TextStyle(
@@ -95,22 +94,21 @@ final ThemeData lightTheme = ThemeData(
   filledButtonTheme: FilledButtonThemeData(
     style: ButtonStyle(
       alignment: Alignment.center,
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
         (states) {
-          if (states.contains(MaterialState.hovered)) {
+          if (states.contains(WidgetState.hovered)) {
             return const Color(0xFF737373).withOpacity(0.4);
           }
           return const Color(0xFF737373);
         },
       ),
-      foregroundColor:
-          MaterialStateProperty.all<Color>(const Color(0xFF737373)),
-      shape: MaterialStateProperty.all(
+      foregroundColor: WidgetStateProperty.all<Color>(const Color(0xFF737373)),
+      shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
       ),
-      textStyle: MaterialStateProperty.all(
+      textStyle: WidgetStateProperty.all(
         const TextStyle(
           fontFamily: Constants.fontInter,
           fontWeight: FontWeight.w500,
@@ -123,18 +121,18 @@ final ThemeData lightTheme = ThemeData(
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
       alignment: Alignment.center,
-      backgroundColor: MaterialStateProperty.all<Color>(
+      backgroundColor: WidgetStateProperty.all<Color>(
         Colors.transparent,
       ),
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
       ),
-      iconColor: MaterialStateProperty.all(
+      iconColor: WidgetStateProperty.all(
         Colors.black12,
       ),
-      iconSize: MaterialStateProperty.all(14.0),
+      iconSize: WidgetStateProperty.all(14.0),
     ),
   ),
 );

@@ -89,7 +89,7 @@ class HomePage extends StatelessWidget {
               height: deviceHeight * 0.065,
               labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
               shadowColor: Colors.transparent,
-              overlayColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+              overlayColor: WidgetStatePropertyAll<Color>(Colors.transparent),
               surfaceTintColor: Colors.transparent,
               indicatorColor: Colors.white,
               selectedIndex: index,

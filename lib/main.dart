@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:instagram_clone/features/home/bloc/home_event.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:instagram_clone/common/bloc/common_bloc.dart';
@@ -14,6 +13,7 @@ import 'package:instagram_clone/core/custom_router.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/core/session_details.dart';
 import 'package:instagram_clone/features/home/bloc/home_bloc.dart';
+import 'package:instagram_clone/features/home/bloc/home_event.dart';
 import 'package:instagram_clone/features/login/bloc/login_bloc.dart';
 import 'package:instagram_clone/features/signup/bloc/signup_bloc.dart';
 import 'package:instagram_clone/firebase_options.dart';
