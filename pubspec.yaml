@@ -19,12 +19,12 @@ dependencies:
   json_annotation: ^4.9.0
   cached_network_image: ^3.3.1
   flutter_cache_manager: ^3.3.2
-  firebase_core: ^2.25.4
-  cloud_firestore: ^4.15.5
+  firebase_core: ^2.31.0
+  cloud_firestore: ^4.17.3
   flutter_displaymode: ^0.6.0
   equatable: ^2.0.5
-  firebase_auth: ^4.17.5
-  firebase_storage: ^11.6.6
+  firebase_auth: ^4.19.5
+  firebase_storage: ^11.7.5
   shared_preferences: ^2.2.3
   logger: ^2.3.0
   material_design_icons_flutter: ^7.0.7296
