@@ -32,52 +32,7 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<TabBloc, int>(
       builder: (_, index) {
         return Scaffold(
-          body: SafeArea(
-            child: NestedScrollView(
-              floatHeaderSlivers: true,
-              headerSliverBuilder:
-                  (_, __) => [
-                    SliverAppBar(
-                      bottom: PreferredSize(
-                        preferredSize: Size(deviceWidth, 1),
-                        child: Divider(
-                          height: 1,
-                          thickness: 1,
-                          color: lightTheme.colorScheme.secondary.withValues(
-                            alpha: 0.2,
-                          ),
-                        ),
-                      ),
-                      snap: true,
-                      floating: true,
-                      automaticallyImplyLeading: false,
-                      surfaceTintColor: Colors.transparent,
-                      centerTitle: false,
-                      title: Text(
-                        Constants.appName,
-                        style: lightTheme.textTheme.displayLarge,
-                      ),
-                      actions: [
-                        IconButton(
-                          onPressed: () {},
-                          tooltip: Constants.notifications,
-                          icon: SvgPicture.asset(
-                            Constants.pathToLikeUnselectedLightThemeSvg,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          tooltip: Constants.messages,
-                          icon: SvgPicture.asset(
-                            Constants.pathToMessengerLightThemeSvg,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-              body: tabs[index],
-            ),
-          ),
+          body: tabs[index],
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               border: Border(
@@ -91,7 +46,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             child: NavigationBar(
-              height: deviceHeight * 0.065,
+              height: deviceHeight * 0.06,
               labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
               shadowColor: Colors.transparent,
               overlayColor: WidgetStatePropertyAll<Color>(Colors.transparent),

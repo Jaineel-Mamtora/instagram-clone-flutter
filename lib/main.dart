@@ -28,9 +28,7 @@ Future<void> main() async {
     await FlutterDisplayMode.setHighRefreshRate();
   }
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -46,9 +44,9 @@ Future<void> main() async {
 
   isLoggedIn = !SessionDetails().getUser().isEmpty();
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (_) => runApp(MyApp()),
-  );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
