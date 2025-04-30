@@ -35,43 +35,46 @@ class HomePage extends StatelessWidget {
           body: SafeArea(
             child: NestedScrollView(
               floatHeaderSlivers: true,
-              headerSliverBuilder: (_, __) => [
-                SliverAppBar(
-                  bottom: PreferredSize(
-                    preferredSize: Size(deviceWidth, 1),
-                    child: Divider(
-                      height: 1,
-                      thickness: 1,
-                      color: lightTheme.colorScheme.secondary.withOpacity(0.2),
-                    ),
-                  ),
-                  snap: true,
-                  floating: true,
-                  automaticallyImplyLeading: false,
-                  surfaceTintColor: Colors.transparent,
-                  centerTitle: false,
-                  title: Text(
-                    Constants.appName,
-                    style: lightTheme.textTheme.displayLarge,
-                  ),
-                  actions: [
-                    IconButton(
-                      onPressed: () {},
-                      tooltip: Constants.notifications,
-                      icon: SvgPicture.asset(
-                        Constants.pathToLikeUnselectedLightThemeSvg,
+              headerSliverBuilder:
+                  (_, __) => [
+                    SliverAppBar(
+                      bottom: PreferredSize(
+                        preferredSize: Size(deviceWidth, 1),
+                        child: Divider(
+                          height: 1,
+                          thickness: 1,
+                          color: lightTheme.colorScheme.secondary.withValues(
+                            alpha: 0.2,
+                          ),
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      tooltip: Constants.messages,
-                      icon: SvgPicture.asset(
-                        Constants.pathToMessengerLightThemeSvg,
+                      snap: true,
+                      floating: true,
+                      automaticallyImplyLeading: false,
+                      surfaceTintColor: Colors.transparent,
+                      centerTitle: false,
+                      title: Text(
+                        Constants.appName,
+                        style: lightTheme.textTheme.displayLarge,
                       ),
+                      actions: [
+                        IconButton(
+                          onPressed: () {},
+                          tooltip: Constants.notifications,
+                          icon: SvgPicture.asset(
+                            Constants.pathToLikeUnselectedLightThemeSvg,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          tooltip: Constants.messages,
+                          icon: SvgPicture.asset(
+                            Constants.pathToMessengerLightThemeSvg,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                ),
-              ],
               body: tabs[index],
             ),
           ),
@@ -79,7 +82,9 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(
-                  color: lightTheme.colorScheme.secondary.withOpacity(0.2),
+                  color: lightTheme.colorScheme.secondary.withValues(
+                    alpha: 0.2,
+                  ),
                   width: 1,
                   style: BorderStyle.solid,
                 ),
@@ -93,7 +98,8 @@ class HomePage extends StatelessWidget {
               surfaceTintColor: Colors.transparent,
               indicatorColor: Colors.white,
               selectedIndex: index,
-              onDestinationSelected: (index) => context.read<TabBloc>().add(
+              onDestinationSelected:
+                  (index) => context.read<TabBloc>().add(
                     ChangeHomeTabIndex(index: index),
                   ),
               destinations: [
@@ -118,9 +124,7 @@ class HomePage extends StatelessWidget {
                   tooltip: Constants.search,
                 ),
                 NavigationDestination(
-                  icon: SvgPicture.asset(
-                    Constants.pathToAddPostLightThemeSvg,
-                  ),
+                  icon: SvgPicture.asset(Constants.pathToAddPostLightThemeSvg),
                   label: Constants.post,
                   tooltip: Constants.post,
                 ),

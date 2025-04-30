@@ -97,7 +97,7 @@ final ThemeData lightTheme = ThemeData(
       backgroundColor: WidgetStateProperty.resolveWith<Color>(
         (states) {
           if (states.contains(WidgetState.hovered)) {
-            return const Color(0xFF737373).withOpacity(0.4);
+            return const Color(0xFF737373).withValues(alpha: 0.4);
           }
           return const Color(0xFF737373);
         },

@@ -23,7 +23,7 @@ class ProfileTab extends StatelessWidget {
           vertical: deviceHeight * 0.015,
           horizontal: deviceWidth * 0.02,
         ),
-        borderColor: lightTheme.colorScheme.secondary.withOpacity(0.3),
+        borderColor: lightTheme.colorScheme.secondary.withValues(alpha: 0.3),
         borderRadius: deviceWidth * 0.02,
         textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w500,
@@ -31,13 +31,11 @@ class ProfileTab extends StatelessWidget {
         onPressed: () {
           LoaderManager().showLoader(context);
           Future.delayed(Duration(seconds: 1), () async {
-            await auth.FirebaseAuth.instance.signOut().then(
-              (_) async {
-                await SessionDetails().setUser(user: User.empty());
-                AppRouter.router.pushReplacement(LoginPage.routeName);
-                LoaderManager().hideLoader();
-              },
-            );
+            await auth.FirebaseAuth.instance.signOut().then((_) async {
+              await SessionDetails().setUser(user: User.empty());
+              AppRouter.router.pushReplacement(LoginPage.routeName);
+              LoaderManager().hideLoader();
+            });
           });
         },
       ),

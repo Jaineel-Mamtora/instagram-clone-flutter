@@ -44,13 +44,11 @@ class CustomTextFormField extends StatelessWidget {
         fillColor: Colors.white,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: lightTheme.colorScheme.secondary.withOpacity(0.4),
+            color: lightTheme.colorScheme.secondary.withValues(alpha: 0.4),
             width: 0.5,
             style: BorderStyle.solid,
           ),
-          borderRadius: BorderRadius.circular(
-            deviceHeight * 0.01,
-          ),
+          borderRadius: BorderRadius.circular(deviceHeight * 0.01),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
@@ -58,9 +56,7 @@ class CustomTextFormField extends StatelessWidget {
             width: 0.5,
             style: BorderStyle.solid,
           ),
-          borderRadius: BorderRadius.circular(
-            deviceHeight * 0.01,
-          ),
+          borderRadius: BorderRadius.circular(deviceHeight * 0.01),
         ),
         errorStyle: lightTheme.textTheme.labelSmall?.copyWith(
           letterSpacing: 1.1,
@@ -72,7 +68,7 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: lightTheme.textTheme.bodyMedium?.copyWith(
           letterSpacing: 1.2,
           fontWeight: FontWeight.w500,
-          color: lightTheme.colorScheme.onSurface.withOpacity(0.4),
+          color: lightTheme.colorScheme.onSurface.withValues(alpha: 0.4),
         ),
         alignLabelWithHint: true,
         focusedErrorBorder: OutlineInputBorder(
@@ -81,9 +77,7 @@ class CustomTextFormField extends StatelessWidget {
             width: 1,
             style: BorderStyle.solid,
           ),
-          borderRadius: BorderRadius.circular(
-            deviceHeight * 0.01,
-          ),
+          borderRadius: BorderRadius.circular(deviceHeight * 0.01),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
@@ -91,13 +85,9 @@ class CustomTextFormField extends StatelessWidget {
             width: 0.5,
             style: BorderStyle.solid,
           ),
-          borderRadius: BorderRadius.circular(
-            deviceHeight * 0.01,
-          ),
+          borderRadius: BorderRadius.circular(deviceHeight * 0.01),
         ),
-        contentPadding: EdgeInsets.all(
-          deviceWidth * 0.045,
-        ),
+        contentPadding: EdgeInsets.all(deviceWidth * 0.045),
       ),
     );
   }

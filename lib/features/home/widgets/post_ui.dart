@@ -15,10 +15,7 @@ import 'package:instagram_clone/utils/utility.dart';
 
 class PostUI extends StatelessWidget {
   final Post post;
-  const PostUI({
-    super.key,
-    required this.post,
-  });
+  const PostUI({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +30,7 @@ class PostUI extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-//? user profile icon
+              //? user profile icon
               Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: deviceHeight * 0.01,
@@ -49,20 +46,21 @@ class PostUI extends StatelessWidget {
                         return Icon(
                           MdiIcons.accountCircle,
                           size: deviceHeight * 0.04,
-                          color:
-                              lightTheme.colorScheme.secondary.withOpacity(0.3),
+                          color: lightTheme.colorScheme.secondary.withValues(
+                            alpha: 0.3,
+                          ),
                         );
                       },
                     ),
                   ),
                 ),
               ),
-//? username
+              //? username
               Text(
                 post.postedBy.username ?? 'username',
                 style: lightTheme.textTheme.labelLarge,
               ),
-//? post menu button
+              //? post menu button
               Spacer(),
               IconButton(
                 onPressed: () {},
@@ -74,7 +72,7 @@ class PostUI extends StatelessWidget {
               ),
             ],
           ),
-//? image/s
+          //? image/s
           Container(
             constraints: BoxConstraints(maxHeight: deviceHeight * 0.5),
             child: CachedNetworkImage(
@@ -82,10 +80,11 @@ class PostUI extends StatelessWidget {
               width: deviceWidth,
               fit: BoxFit.cover,
               alignment: Alignment.center,
-              placeholder: (_, __) => Container(
-                constraints: BoxConstraints(maxHeight: deviceHeight * 0.5),
-                color: lightTheme.colorScheme.onPrimary,
-              ),
+              placeholder:
+                  (_, __) => Container(
+                    constraints: BoxConstraints(maxHeight: deviceHeight * 0.5),
+                    color: lightTheme.colorScheme.onPrimary,
+                  ),
             ),
           ),
           Padding(
@@ -112,11 +111,11 @@ class PostUI extends StatelessWidget {
                             ),
                             onPressed: () {
                               context.read<LikeBloc>().add(
-                                    LikeButtonClickedForPost(
-                                      id: post.id,
-                                      isLiked: isLiked,
-                                    ),
-                                  );
+                                LikeButtonClickedForPost(
+                                  id: post.id,
+                                  isLiked: isLiked,
+                                ),
+                              );
                             },
                             icon: SvgPicture.asset(
                               isLiked
@@ -148,9 +147,7 @@ class PostUI extends StatelessWidget {
                         padding: EdgeInsets.zero,
                       ),
                       onPressed: () {},
-                      icon: SvgPicture.asset(
-                        Constants.pathToShareLightTheme,
-                      ),
+                      icon: SvgPicture.asset(Constants.pathToShareLightTheme),
                     ),
                     Spacer(),
                     IconButton(
@@ -160,9 +157,7 @@ class PostUI extends StatelessWidget {
                         padding: EdgeInsets.zero,
                       ),
                       onPressed: () {},
-                      icon: SvgPicture.asset(
-                        Constants.pathToSaveLightTheme,
-                      ),
+                      icon: SvgPicture.asset(Constants.pathToSaveLightTheme),
                     ),
                   ],
                 ),
@@ -195,9 +190,7 @@ class PostUI extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: deviceHeight * 0.005,
-                  ),
+                  padding: EdgeInsets.only(top: deviceHeight * 0.005),
                   child: Text(
                     Utility.formatDateTimeAgo(post.createdOn),
                     style: lightTheme.textTheme.labelSmall?.copyWith(

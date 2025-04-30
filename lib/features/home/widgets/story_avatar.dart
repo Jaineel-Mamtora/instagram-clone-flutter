@@ -36,7 +36,7 @@ class StoryAvatar extends StatelessWidget {
             ),
             shape: BoxShape.circle,
             border: Border.all(
-              color: lightTheme.colorScheme.secondary.withOpacity(0.5),
+              color: lightTheme.colorScheme.secondary.withValues(alpha: 0.5),
               width: 0.5,
             ),
           ),
@@ -51,19 +51,20 @@ class StoryAvatar extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: profilePhotoUrl ?? '',
                   height: deviceHeight * 0.082,
-                  placeholder: (_, __) => Icon(
-                    MdiIcons.accountCircle,
-                    size: deviceHeight * 0.082,
-                    color: lightTheme.colorScheme.secondary.withOpacity(0.3),
-                  ),
+                  placeholder:
+                      (_, __) => Icon(
+                        MdiIcons.accountCircle,
+                        size: deviceHeight * 0.082,
+                        color: lightTheme.colorScheme.secondary.withValues(
+                          alpha: 0.3,
+                        ),
+                      ),
                 ),
               ),
             ),
           ),
         ),
-        SizedBox(
-          height: deviceHeight * 0.008,
-        ),
+        SizedBox(height: deviceHeight * 0.008),
         SizedBox(
           width: deviceWidth * 0.21,
           child: Center(
