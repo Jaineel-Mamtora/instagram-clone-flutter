@@ -1,6 +1,6 @@
 import 'package:instagram_clone/features/home/domain/entities/search_post.dart';
 
-abstract class SearchPostFeedState {}
+sealed class SearchPostFeedState {}
 
 class SearchPostFeedInitial extends SearchPostFeedState {}
 

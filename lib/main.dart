@@ -16,6 +16,7 @@ import 'package:instagram_clone/di/service_locator.dart' as service_locator;
 import 'package:instagram_clone/features/home/bloc/home_bloc.dart';
 import 'package:instagram_clone/features/home/bloc/home_event.dart';
 import 'package:instagram_clone/features/home/presentation/bloc/search_post_feed_bloc.dart';
+import 'package:instagram_clone/features/home/presentation/bloc/search_post_feed_event.dart';
 import 'package:instagram_clone/features/login/bloc/login_bloc.dart';
 import 'package:instagram_clone/features/signup/bloc/signup_bloc.dart';
 import 'package:instagram_clone/firebase_options.dart';
@@ -73,7 +74,12 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => SignupBloc()),
           BlocProvider(create: (_) => LoginBloc()),
           BlocProvider(create: (_) => PasswordBloc()),
-          BlocProvider(create: (_) => service_locator.sl<SearchPostFeedBloc>()),
+          BlocProvider(
+            create:
+                (_) =>
+                    service_locator.sl<SearchPostFeedBloc>()
+                      ..add(FetchSearchPostFeed(1)),
+          ),
         ],
         child: MaterialApp.router(
           title: 'Instagram Clone',
