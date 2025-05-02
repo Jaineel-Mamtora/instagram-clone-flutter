@@ -19,7 +19,7 @@ class CommonPostsView extends StatelessWidget {
           case Init():
             return const SizedBox.shrink();
           case StartLoading():
-            return LoaderWidget();
+            return const LoaderWidget();
           case StopLoading():
             return const SizedBox.shrink();
           case Done():

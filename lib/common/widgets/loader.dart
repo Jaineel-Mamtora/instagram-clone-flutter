@@ -4,13 +4,15 @@ import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/my_theme.dart';
 
 class LoaderWidget extends StatelessWidget {
+  const LoaderWidget();
+
   @override
   Widget build(BuildContext context) => Center(
-        child: CircularProgressIndicator(
-          color: lightTheme.colorScheme.primary,
-          strokeWidth: 3,
-        ),
-      );
+    child: CircularProgressIndicator(
+      color: lightTheme.colorScheme.primary,
+      strokeWidth: 3,
+    ),
+  );
 }
 
 class LoaderManager {
@@ -21,12 +23,13 @@ class LoaderManager {
 
   void showLoader(BuildContext context) {
     _overlayEntry = OverlayEntry(
-      builder: (BuildContext context) => Container(
-        width: deviceWidth,
-        height: deviceHeight,
-        color: Colors.white60,
-        child: LoaderWidget(),
-      ),
+      builder:
+          (BuildContext context) => Container(
+            width: deviceWidth,
+            height: deviceHeight,
+            color: Colors.white60,
+            child: LoaderWidget(),
+          ),
     );
 
     Overlay.of(context).insert(_overlayEntry!);
