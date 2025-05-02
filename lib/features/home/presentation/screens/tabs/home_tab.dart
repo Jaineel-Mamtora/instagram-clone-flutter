@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:instagram_clone/core/globals.dart';
-import 'package:instagram_clone/features/home/widgets/common_posts_view.dart';
-import 'package:instagram_clone/features/home/widgets/stories_view.dart';
+import 'package:instagram_clone/features/home/presentation/widgets/common_posts_view.dart';
+import 'package:instagram_clone/features/home/presentation/widgets/stories_view.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
 

@@ -12,8 +12,8 @@ ProfileDetails _$ProfileDetailsFromJson(Map<String, dynamic> json) =>
       username: json['username'] as String?,
       profilePhotoUrl: json['profilePhotoUrl'] as String?,
       bio: json['bio'] as String?,
-      followersCount: json['followersCount'] as int? ?? 0,
-      followingCount: json['followingCount'] as int? ?? 0,
+      followersCount: (json['followersCount'] as num?)?.toInt() ?? 0,
+      followingCount: (json['followingCount'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$ProfileDetailsToJson(ProfileDetails instance) =>

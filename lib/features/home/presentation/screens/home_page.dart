@@ -6,11 +6,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/features/home/bloc/home_bloc.dart';
 import 'package:instagram_clone/features/home/bloc/home_event.dart';
-import 'package:instagram_clone/features/home/view/tabs/add_content_tab.dart';
-import 'package:instagram_clone/features/home/view/tabs/home_tab.dart';
-import 'package:instagram_clone/features/home/view/tabs/profile_tab.dart';
-import 'package:instagram_clone/features/home/view/tabs/reels_tab.dart';
-import 'package:instagram_clone/features/home/view/tabs/search_tab.dart';
+import 'package:instagram_clone/features/home/presentation/screens/tabs/add_content_tab.dart';
+import 'package:instagram_clone/features/home/presentation/screens/tabs/home_tab.dart';
+import 'package:instagram_clone/features/home/presentation/screens/tabs/profile_tab.dart';
+import 'package:instagram_clone/features/home/presentation/screens/tabs/reels_tab.dart';
+import 'package:instagram_clone/features/home/presentation/screens/tabs/search_tab.dart';
 import 'package:instagram_clone/my_theme.dart';
 import 'package:instagram_clone/utils/constants.dart';
 

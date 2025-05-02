@@ -7,19 +7,22 @@ part of 'content.dart';
 // **************************************************************************
 
 Content _$ContentFromJson(Map<String, dynamic> json) => Content(
-      posts: (json['posts'] as List<dynamic>?)
+  posts:
+      (json['posts'] as List<dynamic>?)
           ?.map((e) => Post.fromJson(e as Map<String, dynamic>))
           .toList(),
-      stories: (json['stories'] as List<dynamic>?)
+  stories:
+      (json['stories'] as List<dynamic>?)
           ?.map((e) => Story.fromJson(e as Map<String, dynamic>))
           .toList(),
-      conversations: (json['conversations'] as List<dynamic>?)
+  conversations:
+      (json['conversations'] as List<dynamic>?)
           ?.map((e) => Conversation.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+);
 
 Map<String, dynamic> _$ContentToJson(Content instance) => <String, dynamic>{
-      'posts': instance.posts?.map((e) => e.toJson()).toList(),
-      'stories': instance.stories?.map((e) => e.toJson()).toList(),
-      'conversations': instance.conversations?.map((e) => e.toJson()).toList(),
-    };
+  'posts': instance.posts?.map((e) => e.toJson()).toList(),
+  'stories': instance.stories?.map((e) => e.toJson()).toList(),
+  'conversations': instance.conversations?.map((e) => e.toJson()).toList(),
+};

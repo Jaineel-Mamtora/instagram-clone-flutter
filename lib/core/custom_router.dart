@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import 'package:instagram_clone/core/globals.dart';
-import 'package:instagram_clone/features/home/view/home_page.dart';
+import 'package:instagram_clone/features/home/presentation/screens/home_page.dart';
 import 'package:instagram_clone/features/login/view/login_page.dart';
 import 'package:instagram_clone/features/signup/views/signup_page_1.dart';
 import 'package:instagram_clone/features/signup/views/signup_page_2.dart';
@@ -28,18 +28,9 @@ class AppRouter {
         //   );
         // },
       ),
-      GoRoute(
-        path: LoginPage.routeName,
-        builder: (_, __) => LoginPage(),
-      ),
-      GoRoute(
-        path: SignUpPage1.routeName,
-        builder: (_, __) => SignUpPage1(),
-      ),
-      GoRoute(
-        path: SignUpPage2.routeName,
-        builder: (_, __) => SignUpPage2(),
-      ),
+      GoRoute(path: LoginPage.routeName, builder: (_, __) => LoginPage()),
+      GoRoute(path: SignUpPage1.routeName, builder: (_, __) => SignUpPage1()),
+      GoRoute(path: SignUpPage2.routeName, builder: (_, __) => SignUpPage2()),
     ],
   );
 }

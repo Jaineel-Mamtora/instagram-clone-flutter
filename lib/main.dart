@@ -12,8 +12,10 @@ import 'package:instagram_clone/common/bloc/common_bloc.dart';
 import 'package:instagram_clone/core/custom_router.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/core/session_details.dart';
+import 'package:instagram_clone/di/service_locator.dart' as service_locator;
 import 'package:instagram_clone/features/home/bloc/home_bloc.dart';
 import 'package:instagram_clone/features/home/bloc/home_event.dart';
+import 'package:instagram_clone/features/home/presentation/bloc/search_post_feed_bloc.dart';
 import 'package:instagram_clone/features/login/bloc/login_bloc.dart';
 import 'package:instagram_clone/features/signup/bloc/signup_bloc.dart';
 import 'package:instagram_clone/firebase_options.dart';
@@ -23,6 +25,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   sharedPreferences = await SharedPreferences.getInstance();
+
+  service_locator.init();
 
   if (Platform.isAndroid) {
     await FlutterDisplayMode.setHighRefreshRate();
@@ -69,6 +73,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => SignupBloc()),
           BlocProvider(create: (_) => LoginBloc()),
           BlocProvider(create: (_) => PasswordBloc()),
+          BlocProvider(create: (_) => service_locator.sl<SearchPostFeedBloc>()),
         ],
         child: MaterialApp.router(
           title: 'Instagram Clone',

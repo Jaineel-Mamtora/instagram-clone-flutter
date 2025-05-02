@@ -28,10 +28,12 @@ dependencies:
   shared_preferences: ^2.5.3
   logger: ^2.5.0
   material_design_icons_flutter: ^7.0.7296
-  flutter_native_splash: ^2.4.6
   bloc: ^9.0.0
   flutter_bloc: ^9.1.0
   collection: ^1.19.1
+  envied: ^1.1.1
+  dio: ^5.8.0+1
+  get_it: ^8.0.3
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +43,7 @@ dev_dependencies:
   lints: ^5.1.1
   build_runner: ^2.4.15
   bloc_test: ^10.0.0
+  envied_generator: ^1.1.1
 
 flutter:
   uses-material-design: true

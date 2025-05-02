@@ -7,13 +7,15 @@ part of 'conversation.dart';
 // **************************************************************************
 
 Conversation _$ConversationFromJson(Map<String, dynamic> json) => Conversation(
-      groupId: json['groupId'] as String,
-      conversationWith: ProfileDetails.fromJson(
-          json['conversationWith'] as Map<String, dynamic>),
-      messages: (json['messages'] as List<dynamic>)
+  groupId: json['groupId'] as String,
+  conversationWith: ProfileDetails.fromJson(
+    json['conversationWith'] as Map<String, dynamic>,
+  ),
+  messages:
+      (json['messages'] as List<dynamic>)
           .map((e) => Message.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+);
 
 Map<String, dynamic> _$ConversationToJson(Conversation instance) =>
     <String, dynamic>{

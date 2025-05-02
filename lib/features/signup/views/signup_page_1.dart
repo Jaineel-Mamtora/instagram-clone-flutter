@@ -38,7 +38,8 @@ class _SignUpPage1State extends State<SignUpPage1> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-            height: deviceHeight -
+            height:
+                deviceHeight -
                 deviceTopPadding -
                 (Platform.isIOS ? deviceBottomPadding : 0),
             decoration: BoxDecoration(
@@ -54,9 +55,7 @@ class _SignUpPage1State extends State<SignUpPage1> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: deviceHeight * 0.01,
-                  ),
+                  padding: EdgeInsets.only(top: deviceHeight * 0.01),
                   child: IconButton(
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
@@ -99,14 +98,17 @@ class _SignUpPage1State extends State<SignUpPage1> {
                           bottom: deviceHeight * 0.03,
                         ),
                         child: CustomTextFormField(
+                          filled: true,
+                          fillColor: Colors.white,
                           controller: _emailController,
                           textInputType: TextInputType.emailAddress,
                           hintText: Constants.emailHintText,
                           validator: (email) {
                             if (email?.isEmpty ?? false) {
                               return Constants.emailEmptyErrorText;
-                            } else if (!RegExp(Constants.emailRegex)
-                                .hasMatch(email ?? '')) {
+                            } else if (!RegExp(
+                              Constants.emailRegex,
+                            ).hasMatch(email ?? '')) {
                               return Constants.emailRegExpMismatchErrorText;
                             }
                             return null;
@@ -132,9 +134,9 @@ class _SignUpPage1State extends State<SignUpPage1> {
                                 email: _emailController.text.trim(),
                               );
                               _formKey.currentState?.reset();
-                              await context.push(SignUpPage2.routeName).then(
-                                    (_) => _formKey.currentState?.reset(),
-                                  );
+                              await context
+                                  .push(SignUpPage2.routeName)
+                                  .then((_) => _formKey.currentState?.reset());
                             }
                           },
                           textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
@@ -152,9 +154,7 @@ class _SignUpPage1State extends State<SignUpPage1> {
                 Material(
                   color: Colors.transparent,
                   child: Padding(
-                    padding: EdgeInsets.only(
-                      bottom: deviceHeight * 0.02,
-                    ),
+                    padding: EdgeInsets.only(bottom: deviceHeight * 0.02),
                     child: Center(
                       child: InkWell(
                         splashColor: Colors.transparent,

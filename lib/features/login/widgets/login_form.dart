@@ -11,7 +11,7 @@ import 'package:instagram_clone/common/widgets/custom_text_form_field.dart';
 import 'package:instagram_clone/common/widgets/loader.dart';
 import 'package:instagram_clone/core/custom_router.dart';
 import 'package:instagram_clone/core/globals.dart';
-import 'package:instagram_clone/features/home/view/home_page.dart';
+import 'package:instagram_clone/features/home/presentation/screens/home_page.dart';
 import 'package:instagram_clone/features/login/bloc/login_bloc.dart';
 import 'package:instagram_clone/features/login/bloc/login_event.dart';
 import 'package:instagram_clone/features/login/bloc/login_state.dart';
@@ -44,13 +44,16 @@ class LoginForm extends StatelessWidget {
               bottom: deviceHeight * 0.02,
             ),
             child: CustomTextFormField(
+              filled: true,
+              fillColor: Colors.white,
               controller: emailController,
               hintText: Constants.emailHintText,
               validator: (email) {
                 if (email?.isEmpty ?? false) {
                   return Constants.emailEmptyErrorText;
-                } else if (!RegExp(Constants.emailRegex)
-                    .hasMatch(email ?? '')) {
+                } else if (!RegExp(
+                  Constants.emailRegex,
+                ).hasMatch(email ?? '')) {
                   return Constants.emailRegExpMismatchErrorText;
                 }
                 return null;
@@ -66,6 +69,8 @@ class LoginForm extends StatelessWidget {
             child: BlocBuilder<PasswordBloc, bool>(
               builder: (context, isHidden) {
                 return CustomTextFormField(
+                  filled: true,
+                  fillColor: Colors.white,
                   controller: passwordController,
                   obscure: isHidden,
                   hintText: Constants.passwordHintText,
@@ -76,8 +81,8 @@ class LoginForm extends StatelessWidget {
                       highlightColor: Colors.transparent,
                       onPressed: () {
                         context.read<PasswordBloc>().add(
-                              TogglePasswordVisibility(isHidden: !isHidden),
-                            );
+                          TogglePasswordVisibility(isHidden: !isHidden),
+                        );
                       },
                       icon: Icon(
                         isHidden ? MdiIcons.eyeOff : MdiIcons.eye,
@@ -113,9 +118,9 @@ class LoginForm extends StatelessWidget {
                     LoaderManager().hideLoader();
                     break;
                   case Done():
-                    AppRouter.router.pushReplacement(HomePage.routeName).then(
-                          (_) => formKey.currentState?.reset(),
-                        );
+                    AppRouter.router
+                        .pushReplacement(HomePage.routeName)
+                        .then((_) => formKey.currentState?.reset());
                     break;
                   case Error():
                     hideSnackBar();
@@ -133,11 +138,11 @@ class LoginForm extends StatelessWidget {
                 onPressed: () async {
                   if (formKey.currentState?.validate() ?? false) {
                     context.read<LoginBloc>().add(
-                          LoginButtonClicked(
-                            email: emailController.text.trim(),
-                            password: passwordController.text.trim(),
-                          ),
-                        );
+                      LoginButtonClicked(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      ),
+                    );
                   }
                 },
                 textStyle: lightTheme.textTheme.bodyMedium?.copyWith(
@@ -150,9 +155,7 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
-              bottom: deviceHeight * 0.02,
-            ),
+            padding: EdgeInsets.only(bottom: deviceHeight * 0.02),
             child: InkWell(
               onTap: () {},
               child: Text(

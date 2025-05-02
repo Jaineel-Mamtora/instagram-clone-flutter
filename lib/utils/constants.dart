@@ -117,4 +117,5 @@ class MyColors {
 
   static const loginButtonColor = Color(0xFF0064E1);
   static const metaTextColor = Color(0xFF09244B);
+  static const fillColor = Color(0xFFF4F5F7);
 }

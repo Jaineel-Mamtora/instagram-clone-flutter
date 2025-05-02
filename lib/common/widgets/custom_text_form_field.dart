@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/my_theme.dart';
 
+enum InputSize { small, normal, large }
+
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
@@ -12,7 +14,12 @@ class CustomTextFormField extends StatelessWidget {
     this.obscure = false,
     this.textInputType = TextInputType.text,
     this.suffixIcon,
-  });
+    this.size = InputSize.normal,
+    this.filled = false,
+    this.fillColor,
+    this.prefixIcon,
+    this.hasBorder = true,
+  }) : assert(filled == true || fillColor == null);
 
   final String hintText;
   final String? Function(String?) validator;
@@ -20,6 +27,11 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType textInputType;
   final Widget? suffixIcon;
   final TextEditingController controller;
+  final InputSize size;
+  final bool filled;
+  final Widget? prefixIcon;
+  final Color? fillColor;
+  final bool hasBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +49,19 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       keyboardType: textInputType,
       decoration: InputDecoration(
+        prefixIcon: prefixIcon,
+        prefixIconConstraints: BoxConstraints(maxHeight: 20.0),
         suffixIcon: suffixIcon,
         isCollapsed: true,
         isDense: true,
-        filled: true,
-        fillColor: Colors.white,
+        filled: filled,
+        fillColor: fillColor,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: lightTheme.colorScheme.secondary.withValues(alpha: 0.4),
+            color:
+                hasBorder
+                    ? lightTheme.colorScheme.secondary.withValues(alpha: 0.4)
+                    : fillColor ?? Colors.white,
             width: 0.5,
             style: BorderStyle.solid,
           ),
@@ -52,7 +69,10 @@ class CustomTextFormField extends StatelessWidget {
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: lightTheme.colorScheme.error,
+            color:
+                hasBorder
+                    ? lightTheme.colorScheme.error
+                    : fillColor ?? Colors.white,
             width: 0.5,
             style: BorderStyle.solid,
           ),
@@ -73,7 +93,10 @@ class CustomTextFormField extends StatelessWidget {
         alignLabelWithHint: true,
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: lightTheme.colorScheme.error,
+            color:
+                hasBorder
+                    ? lightTheme.colorScheme.error
+                    : fillColor ?? Colors.white,
             width: 1,
             style: BorderStyle.solid,
           ),
@@ -81,14 +104,28 @@ class CustomTextFormField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: lightTheme.colorScheme.secondary,
+            color:
+                hasBorder
+                    ? lightTheme.colorScheme.secondary
+                    : fillColor ?? Colors.white,
             width: 0.5,
             style: BorderStyle.solid,
           ),
           borderRadius: BorderRadius.circular(deviceHeight * 0.01),
         ),
-        contentPadding: EdgeInsets.all(deviceWidth * 0.045),
+        contentPadding: EdgeInsets.all(computeContentPadding()),
       ),
     );
+  }
+
+  double computeContentPadding() {
+    switch (size) {
+      case InputSize.small:
+        return deviceWidth * 0.025;
+      case InputSize.normal:
+        return deviceWidth * 0.045;
+      case InputSize.large:
+        return deviceWidth * 0.045;
+    }
   }
 }

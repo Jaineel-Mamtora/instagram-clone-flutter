@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:instagram_clone/common/widgets/custom_snackbar.dart';
 import 'package:instagram_clone/common/widgets/loader.dart';
+import 'package:instagram_clone/core/globals.dart';
 import 'package:instagram_clone/features/home/bloc/home_bloc.dart';
 import 'package:instagram_clone/features/home/bloc/home_state.dart';
-import 'package:instagram_clone/features/home/widgets/post_ui.dart';
+import 'package:instagram_clone/features/home/presentation/widgets/story_avatar.dart';
 
-class CommonPostsView extends StatelessWidget {
-  const CommonPostsView({super.key});
+class StoriesView extends StatelessWidget {
+  const StoriesView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +24,19 @@ class CommonPostsView extends StatelessWidget {
           case StopLoading():
             return const SizedBox.shrink();
           case Done():
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+            return ListView.separated(
+              padding: EdgeInsets.symmetric(horizontal: deviceHeight * 0.016),
+              scrollDirection: Axis.horizontal,
               itemCount: state.commonPosts.length,
-              itemBuilder: (_, index) {
-                return PostUI(post: state.commonPosts[index]);
-              },
+              itemBuilder:
+                  (_, index) => StoryAvatar(
+                    index: index,
+                    profilePhotoUrl:
+                        state.commonPosts[index].postedBy.profilePhotoUrl,
+                    username: state.commonPosts[index].postedBy.username,
+                  ),
+              separatorBuilder:
+                  (_, __) => SizedBox(width: deviceHeight * 0.016),
             );
           case Error():
             hideSnackBar();
