@@ -11,7 +11,7 @@ class HomeRemoteDatasource {
   Future<List<SearchPost>> fetchPaginatedListOfPhotos(int pageId) async {
     final response = await dio.get(
       '/photos',
-      queryParameters: {'per_page': '25'},
+      queryParameters: {'per_page': 25, 'page': pageId},
     );
     final data = response.data as List;
 

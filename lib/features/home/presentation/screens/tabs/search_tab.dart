@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/common/widgets/custom_text_form_field.dart';
 import 'package:instagram_clone/common/widgets/loader.dart';
 import 'package:instagram_clone/features/home/presentation/bloc/search_post_feed_bloc.dart';
+import 'package:instagram_clone/features/home/presentation/bloc/search_post_feed_event.dart';
 import 'package:instagram_clone/features/home/presentation/bloc/search_post_feed_state.dart';
 import 'package:instagram_clone/features/home/presentation/widgets/custom_post_feed_grid.dart';
 import 'package:instagram_clone/utils/constants.dart';
@@ -24,6 +25,12 @@ class _SearchTabState extends State<SearchTab> {
   void initState() {
     super.initState();
     _searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,7 +69,13 @@ class _SearchTabState extends State<SearchTab> {
               case SearchPostFeedLoading():
                 return const LoaderWidget();
               case SearchPostFeedLoaded():
-                return CustomPostFeedGrid(posts: state.posts);
+                return CustomPostFeedGrid(
+                  posts: state.posts,
+                  isLoading: state.isPaginating,
+                  onLoadMore: () {
+                    context.read<SearchPostFeedBloc>().add(FetchMorePosts());
+                  },
+                );
               case SearchPostFeedError():
                 return const Center(child: Text('Error Loading feeds'));
             }

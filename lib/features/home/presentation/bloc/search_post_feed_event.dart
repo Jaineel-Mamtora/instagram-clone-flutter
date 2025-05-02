@@ -1,6 +1,20 @@
-abstract class SearchPostFeedEvent {}
+import 'package:equatable/equatable.dart';
 
-class FetchSearchPostFeed extends SearchPostFeedEvent {
+sealed class SearchPostFeedEvent extends Equatable {
+  const SearchPostFeedEvent();
+}
+
+final class FetchInitialPosts extends SearchPostFeedEvent {
   final int page;
-  FetchSearchPostFeed(this.page);
+  const FetchInitialPosts(this.page);
+
+  @override
+  List<Object?> get props => [page];
+}
+
+final class FetchMorePosts extends SearchPostFeedEvent {
+  const FetchMorePosts();
+
+  @override
+  List<Object?> get props => [];
 }

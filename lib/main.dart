@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
             create:
                 (_) =>
                     service_locator.sl<SearchPostFeedBloc>()
-                      ..add(FetchSearchPostFeed(1)),
+                      ..add(FetchInitialPosts(1)),
           ),
         ],
         child: MaterialApp.router(

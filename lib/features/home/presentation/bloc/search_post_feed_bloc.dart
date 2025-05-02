@@ -6,13 +6,45 @@ import 'package:instagram_clone/features/home/presentation/bloc/search_post_feed
 
 class SearchPostFeedBloc
     extends Bloc<SearchPostFeedEvent, SearchPostFeedState> {
-  final GetPaginatedPhotosUseCase useCase;
+  final GetPaginatedPhotosUseCase getPaginatedPhotos;
 
-  SearchPostFeedBloc(this.useCase) : super(SearchPostFeedInitial()) {
-    on<FetchSearchPostFeed>((event, emit) async {
-      emit(SearchPostFeedLoading());
-      final result = await useCase(event.page);
-      emit(SearchPostFeedLoaded(result));
-    });
+  SearchPostFeedBloc(this.getPaginatedPhotos) : super(SearchPostFeedInitial()) {
+    on<FetchInitialPosts>(_onInitialFetch);
+    on<FetchMorePosts>(_onFetchMore);
+  }
+
+  Future<void> _onInitialFetch(
+    FetchInitialPosts event,
+    Emitter<SearchPostFeedState> emit,
+  ) async {
+    emit(SearchPostFeedLoading());
+    try {
+      final posts = await getPaginatedPhotos(1);
+      emit(SearchPostFeedLoaded(posts: posts, page: 1));
+    } catch (e) {
+      emit(SearchPostFeedError('Failed to load posts'));
+    }
+  }
+
+  Future<void> _onFetchMore(
+    FetchMorePosts event,
+    Emitter<SearchPostFeedState> emit,
+  ) async {
+    if (state is SearchPostFeedLoaded) {
+      final currentState = state as SearchPostFeedLoaded;
+
+      if (currentState.isPaginating) return; // Prevent double-fetch
+
+      emit(currentState.copyWith(isPaginating: true));
+      try {
+        final newPosts = await getPaginatedPhotos(currentState.page + 1);
+        final combined = [...currentState.posts, ...newPosts];
+        emit(
+          SearchPostFeedLoaded(posts: combined, page: currentState.page + 1),
+        );
+      } catch (e) {
+        emit(SearchPostFeedError('Failed to load more posts'));
+      }
+    }
   }
 }
