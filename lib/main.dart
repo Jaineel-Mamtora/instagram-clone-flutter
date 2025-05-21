@@ -33,7 +33,9 @@ Future<void> main() async {
     await FlutterDisplayMode.setHighRefreshRate();
   }
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -51,7 +53,9 @@ Future<void> main() async {
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-  ]).then((_) => runApp(MyApp()));
+  ]).then(
+    (_) => runApp(MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -70,15 +74,16 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (_) => TabBloc()),
           BlocProvider(create: (_) => LikeBloc()),
-          BlocProvider(create: (_) => HomeBloc()..add(FetchCommonPosts())),
+          BlocProvider(
+            create: (_) => HomeBloc()..add(FetchCommonPosts()),
+          ),
           BlocProvider(create: (_) => SignupBloc()),
           BlocProvider(create: (_) => LoginBloc()),
           BlocProvider(create: (_) => PasswordBloc()),
           BlocProvider(
-            create:
-                (_) =>
-                    service_locator.sl<SearchPostFeedBloc>()
-                      ..add(FetchInitialPosts(1)),
+            create: (_) =>
+                service_locator.sl<SearchPostFeedBloc>()
+                  ..add(FetchInitialPosts(1)),
           ),
         ],
         child: MaterialApp.router(
